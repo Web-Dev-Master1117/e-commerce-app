@@ -7,6 +7,8 @@ import { Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { Fragment, useState } from 'react';
 
+//TODO add filter functionality
+
 function FilterMenu() {
 	const [colorFilterExpanded, setColorFilterExpanded] = useState(true);
 	const [sizeFilterExpanded, setSizeFilterExpanded] = useState(true);

@@ -2,7 +2,6 @@ import COUNTRY_LIST from '@/constants/countries';
 
 export default function CheckoutForm() {
 	return (
-		//TODO remove w-screen later
 		<div className='grow space-y-8 px-5 py-5 sm:px-14'>
 			<h1 className='font-secondary text-4xl'>Billing Details</h1>
 			<div className='space-y-5'>

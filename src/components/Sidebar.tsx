@@ -5,6 +5,7 @@ import { sidebarOpenState } from '@/recoil/atoms';
 import { tw } from '@/utils';
 import { Transition } from '@headlessui/react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -22,6 +23,8 @@ export default function Sidebar() {
 	};
 
 	const [sidebarOpen, setSidebarOpen] = useRecoilState(sidebarOpenState);
+	const pathname = usePathname();
+	useEffect(() => setSidebarOpen(false), [pathname, setSidebarOpen]);
 	const closeSidebar = () => setSidebarOpen(false);
 
 	const specialsMenuRotate = specialsMenuOpen ? tw`rotate-0` : tw`rotate-90`;
@@ -81,13 +84,11 @@ export default function Sidebar() {
 				<aside className='fixed top-0 left-0 z-30 flex h-screen w-72 flex-col overflow-y-auto bg-white p-5 text-base font-semibold shadow-lg dark:bg-dark'>
 					<ul className='space-y-5'>
 						<li>
-							<Link href='/'>
-								<span>Home</span>
-							</Link>
+							<Link href='/'>Home</Link>
 						</li>
 						<li>
 							<div className='flex items-center justify-between'>
-								<span>Products</span>
+								<Link href='/products/all'>Products</Link>
 								<i
 									className={`ri-arrow-down-s-line ${productsMenuRotate} cursor-pointer transition-transform duration-500`}
 									onClick={toggleProductsMenu}
@@ -184,15 +185,6 @@ export default function Sidebar() {
 							<span>Sales</span>
 						</li>
 					</ul>
-					{/*TODO revert color on hover */}
-					<div className='mt-auto space-y-5 text-center'>
-						<div className='cursor-pointer rounded bg-black py-3 px-6 text-white dark:bg-white dark:text-black'>
-							LOGIN
-						</div>
-						<div className='cursor-pointer rounded border-2 border-black py-3 px-6 dark:border-white'>
-							REGISTER
-						</div>
-					</div>
 				</aside>
 			</Transition.Child>
 		</Transition>

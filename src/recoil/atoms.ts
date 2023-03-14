@@ -21,6 +21,7 @@ export const shoppingCartOpenState = atom({
 export const shippingPlanState = atom<TShippingPlan>({
 	key: 'ShippingPlan',
 	default: 'free',
+	effects: [persistEffect<TShippingPlan>('ShippingPlan')],
 });
 
 export const cartItemsState = atom<TCartItems>({

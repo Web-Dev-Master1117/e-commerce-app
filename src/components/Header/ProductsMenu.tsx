@@ -8,7 +8,6 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import ProductCard from '../common/ProductCard';
 
-//TODO use state with transition to hide on click
 export default function ProductsMenu() {
 	const products = [PRODUCTS[9], PRODUCTS[11], PRODUCTS[10]];
 	const [showProductMenu, setShowProductMenu] = useState(false);

@@ -2,6 +2,7 @@
 
 import { IProduct } from '@/common/interfaces';
 import { TSize } from '@/common/types';
+import useCheckout from '@/hooks/checkout';
 import { cartItemsState, compareItemsState, wishlistItemsState } from '@/recoil/atoms';
 import { getDiscountedValue, tw } from '@/utils';
 import Link from 'next/link';
@@ -54,6 +55,11 @@ export default function Actions({ product }: { product: IProduct }) {
 			: setCompareItems((prev) => [product, ...prev]);
 
 	const compareIconClasses = isCompareItem ? tw`text-teal-400` : tw``;
+
+	const { checkout, isError, isLoading } = useCheckout([
+		{ quantity: quantity ? quantity : 1, price: product.stripePriceId },
+	]);
+	const handleBuyNow = () => checkout();
 
 	return (
 		<div className='max-w-xl space-y-3 px-5'>
@@ -190,12 +196,18 @@ export default function Actions({ product }: { product: IProduct }) {
 				</div>
 				<button
 					onClick={handleAddToCart}
-					className='h-10 flex-grow rounded border-2 align-middle font-semibold'
+					className='h-10 flex-grow rounded border align-middle font-semibold duration-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black'
 				>
 					ADD TO CART
 				</button>
-				<button className='h-10 w-full rounded bg-black font-semibold text-white dark:bg-white dark:text-black'>
-					BUY NOW
+				<button
+					disabled={isLoading}
+					onClick={handleBuyNow}
+					className={`h-10 w-full rounded ${
+						isError ? 'bg-red-400' : 'bg-teal-400'
+					} font-semibold text-white duration-300`}
+				>
+					{isLoading ? 'Loading...' : isError ? 'Try Again' : 'BUY NOW'}
 				</button>
 			</div>
 

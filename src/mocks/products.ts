@@ -73,6 +73,7 @@ const PRODUCTS: IProduct[] = [
 				color: tw`bg-red-700 border-red-700`,
 			},
 		],
+		stripePriceId: /*cspell: disable*/ 'price_1Mkp8yDK9f6RLy6szX28Qgnq/*cspell: enable*/ ',
 	},
 	{
 		id: 1,
@@ -98,6 +99,7 @@ const PRODUCTS: IProduct[] = [
 				color: tw`bg-red-700 border-red-700`,
 			},
 		],
+		stripePriceId: /*cspell: disable*/ 'price_1MkpA2DK9f6RLy6sLcG69ydZ' /*cspell: enable*/,
 	},
 	{
 		id: 2,
@@ -123,6 +125,7 @@ const PRODUCTS: IProduct[] = [
 				color: tw`bg-red-700 border-red-700`,
 			},
 		],
+		stripePriceId: /*cspell: disable*/ 'price_1MkpB1DK9f6RLy6skEIxtqDo' /*cspell: enable*/,
 	},
 	{
 		id: 3,
@@ -148,6 +151,7 @@ const PRODUCTS: IProduct[] = [
 				color: tw`bg-yellow-600 border-yellow-600`,
 			},
 		],
+		stripePriceId: /*cspell: disable*/ 'price_1MkpBYDK9f6RLy6srzQQVcVy' /*cspell: enable*/,
 	},
 
 	{
@@ -174,6 +178,7 @@ const PRODUCTS: IProduct[] = [
 				color: tw`bg-orange-500 border-orange-500`,
 			},
 		],
+		stripePriceId: /*cspell: disable*/ 'price_1MkpBsDK9f6RLy6s0CTi68fE' /*cspell: enable*/,
 	},
 	{
 		id: 5,
@@ -199,6 +204,7 @@ const PRODUCTS: IProduct[] = [
 				color: tw`bg-orange-500 border-orange-500`,
 			},
 		],
+		stripePriceId: /*cspell: disable*/ 'price_1MkpCEDK9f6RLy6saMTZV6Hm' /*cspell: enable*/,
 	},
 	{
 		id: 6,
@@ -224,6 +230,7 @@ const PRODUCTS: IProduct[] = [
 				color: tw`bg-orange-500 border-orange-500`,
 			},
 		],
+		stripePriceId: /*cspell: disable*/ 'price_1MkpCWDK9f6RLy6sbjHNsypj' /*cspell: enable*/,
 	},
 	{
 		id: 7,
@@ -249,6 +256,7 @@ const PRODUCTS: IProduct[] = [
 				color: tw`bg-pink-400 border-pink-400`,
 			},
 		],
+		stripePriceId: /*cspell: disable*/ 'price_1MkpCuDK9f6RLy6sWkI185Iw' /*cspell: enable*/,
 	},
 
 	{
@@ -275,6 +283,7 @@ const PRODUCTS: IProduct[] = [
 				color: tw`bg-blue-900 border-blue-900`,
 			},
 		],
+		stripePriceId: /*cspell: disable*/ 'price_1MkpDbDK9f6RLy6suf6PV1xe' /*cspell: enable*/,
 	},
 	{
 		id: 9,
@@ -300,6 +309,7 @@ const PRODUCTS: IProduct[] = [
 				color: tw`bg-blue-900 border-blue-900`,
 			},
 		],
+		stripePriceId: /*cspell: disable*/ 'price_1MkpDvDK9f6RLy6sZU9RViHG' /*cspell: enable*/,
 	},
 	{
 		id: 10,
@@ -325,6 +335,7 @@ const PRODUCTS: IProduct[] = [
 				color: tw`bg-blue-900 border-blue-900`,
 			},
 		],
+		stripePriceId: /*cspell: disable*/ 'price_1Mko3KDK9f6RLy6soL2TjA6y' /*cspell: enable*/,
 	},
 	{
 		id: 11,
@@ -350,6 +361,7 @@ const PRODUCTS: IProduct[] = [
 				color: tw`bg-white border hover:brightness-90`,
 			},
 		],
+		stripePriceId: /*cspell: disable*/ 'price_1MkpEXDK9f6RLy6sVXb0u8Bi' /*cspell: enable*/,
 	},
 ];
 

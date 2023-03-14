@@ -19,7 +19,3 @@ export default function Home() {
 		</main>
 	);
 }
-
-//TODO image loading placeholder
-//TODO use local images with blur
-//TODO move product into products change routing as products/[category]/[id]

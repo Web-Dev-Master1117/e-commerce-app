@@ -15,6 +15,7 @@ export interface IProduct {
 		id: number;
 		color: string;
 	}[];
+	stripePriceId: string;
 }
 
 export interface ICartItem extends IProduct {

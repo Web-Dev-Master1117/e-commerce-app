@@ -1,6 +1,7 @@
 'use client';
 
 import { ICartItem } from '@/common/interfaces';
+import useCheckout from '@/hooks/checkout';
 import { cartItemsState, shoppingCartOpenState } from '@/recoil/atoms';
 import { getDiscountedValue } from '@/utils';
 import { Transition } from '@headlessui/react';
@@ -8,6 +9,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
+import Stripe from 'stripe';
 import CostDetails from './common/CostDetails';
 
 //TODO use dialog headless comp to get keyboard shortcuts
@@ -28,6 +30,15 @@ export default function ShoppingCart() {
 			return newItems;
 		});
 	};
+
+	const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = Array.from(
+		cartItems.values()
+	).map(({ quantity, stripePriceId }) => ({
+		quantity,
+		price: stripePriceId,
+	}));
+
+	const { checkout, isLoading, isError } = useCheckout(lineItems);
 
 	return (
 		<Transition show={sidebarOpen}>
@@ -119,23 +130,25 @@ export default function ShoppingCart() {
 							))}
 						</ul>
 					)}
-					{/*TODO revert color on hover */}
+
 					<div className='mt-auto space-y-3 border border-gray-50 bg-gray-100 p-5 dark:border-slate-800 dark:bg-slate-900'>
 						<CostDetails />
 						<div className='space-y-3 font-semibold'>
-							<Link
-								href='/checkout'
-								type='button'
-								className='flex w-full items-center justify-center rounded bg-teal-400 py-2 text-white'
-								onClick={closeSidebar}
+							<form action='/checkout_sessions' method='post'></form>
+							<button
+								disabled={isLoading}
+								className={`${
+									isError ? 'bg-red-400' : 'bg-teal-400'
+								} w-full rounded py-2 text-white duration-300`}
+								onClick={checkout}
 							>
-								Checkout
-							</Link>
+								{isLoading ? 'Loading...' : isError ? 'Try Again' : 'Checkout'}
+							</button>
 
 							<Link
 								href='/cart'
 								type='button'
-								className='flex w-full items-center justify-center rounded border border-black py-2 dark:border-white'
+								className='flex h-10 w-full items-center justify-center rounded border duration-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black'
 								onClick={closeSidebar}
 							>
 								View Cart
