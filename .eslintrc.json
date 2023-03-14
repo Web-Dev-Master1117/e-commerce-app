@@ -1,3 +1,8 @@
 {
-	"extends": "next/core-web-vitals"
+	"extends": "next/core-web-vitals",
+
+	"rules": {
+		//HACK to stop lint err about page dir location
+		"@next/next/no-html-link-for-pages": ["error", "src/app"]
+	}
 }
