@@ -6,7 +6,7 @@
 		"dev": "next dev",
 		"dev:turbo": "pnpm -s dev --turbo",
 		"build": "next build",
-		"build:analyze": "$env:ANALYZE='true'; pnpm build",
+		"build:analyze": "set ANALYZE=true&& pnpm build",
 		"start": "next start",
 		"lint": "next lint",
 		"ts:errors": "pnpm tsc --noEmit",
