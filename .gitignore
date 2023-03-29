@@ -38,3 +38,4 @@ next-env.d.ts
 # cache
 .cspellcache
 .eslintcache
+.prettier-cache

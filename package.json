@@ -9,7 +9,7 @@
 		"build:analyze": "set ANALYZE=true&& pnpm build",
 		"start": "next start",
 		"lint": "next lint",
-		"ts:errors": "pnpm tsc --noEmit",
+		"ts:errors": "tsc --noEmit",
 		"prepare": "husky install"
 	},
 	"dependencies": {
@@ -38,6 +38,12 @@
 		"postcss": "^8.4.21",
 		"prettier": "^2.8.4",
 		"prettier-plugin-tailwindcss": "0.1.9",
-		"tailwindcss": "^3.2.7"
+		"tailwindcss": "^3.2.7",
+		"lint-staged": "^13.2.0"
+	},
+	"lint-staged": {
+		"*": [
+			"prettier --write --ignore-unknown --cache --cache-location=.prettier-cache"
+		]
 	}
 }

@@ -4,14 +4,14 @@
 yellow='\033[0;33m'
 no_color='\033[0m'
 
-echo -e "${yellow}Linting:${no_color}"
-FORCE_COLOR=1 pnpm eslint --fix --max-warnings 0 --cache "src/**/*.{js,ts,jsx,tsx}"
+# To fix color issues
+exec >/dev/tty 2>&1
 
-echo -e "${yellow}Formatting:${no_color}"
-FORCE_COLOR=1 pnpm prettier --write --ignore-unknown --cache .
+echo -e "${yellow}Linting:${no_color}"
+FORCE_COLOR=1 pnpm tsc --noEmit && pnpm eslint --fix --max-warnings 0 --cache "src/**/*.{js,ts,jsx,tsx}"
 
 echo -e "${yellow}Spell Checking:${no_color}"
 FORCE_COLOR=1 pnpm cspell --show-suggestions --relative --no-must-find-files --cache .
 
-echo -e "${yellow}Typescript Errors:${no_color}"
-FORCE_COLOR=1 pnpm tsc --noEmit
+echo -e "${yellow}Formatting:${no_color}"
+FORCE_COLOR=1 pnpm exec lint-staged
