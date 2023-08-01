@@ -55,7 +55,7 @@ export default function MobileNavbar() {
 					<Link href='/compare' className='relative'>
 						<i className='ri-arrow-left-right-fill'></i>
 						{hasCompareItems && (
-							<span className='absolute left-3 bottom-4 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
+							<span className='absolute bottom-4 left-3 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
 								{compareItemsNumber}
 							</span>
 						)}
@@ -65,7 +65,7 @@ export default function MobileNavbar() {
 					<Link href='/wishlist' className='relative'>
 						<i className='ri-star-line'></i>
 						{hasWishlistItems && (
-							<span className='absolute left-3 bottom-4 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
+							<span className='absolute bottom-4 left-3 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
 								{wishlistItemsNumber}
 							</span>
 						)}
@@ -74,14 +74,14 @@ export default function MobileNavbar() {
 				<li onClick={() => setShoppingCartOpen(true)} className='relative cursor-pointer'>
 					<i className='ri-shopping-bag-2-line'></i>
 					{showItemsNumber && (
-						<span className='absolute left-3 bottom-4 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
+						<span className='absolute bottom-4 left-3 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
 							{itemsNumber}
 						</span>
 					)}
 				</li>
 				<li className='group relative cursor-pointer'>
 					<i className={themeIcon}></i>
-					<ul className='invisible absolute right-1/2 bottom-14 translate-x-1/2 space-y-2 text-white opacity-0 duration-300 group-hover:visible group-hover:opacity-100'>
+					<ul className='invisible absolute bottom-14 right-1/2 translate-x-1/2 space-y-2 text-white opacity-0 duration-300 group-hover:visible group-hover:opacity-100'>
 						<li
 							className='flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-teal-400'
 							onClick={() => setTheme('light')}

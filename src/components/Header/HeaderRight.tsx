@@ -21,7 +21,7 @@ export default function HeaderRight() {
 			</li>
 			<li className='relative cursor-pointer hover:opacity-50' onClick={openShoppingCart}>
 				{showItemsNumber && (
-					<span className='absolute left-3 bottom-4 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
+					<span className='absolute bottom-4 left-3 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
 						{itemsNumber}
 					</span>
 				)}

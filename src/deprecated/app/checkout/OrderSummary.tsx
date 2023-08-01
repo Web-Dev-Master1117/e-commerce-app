@@ -17,7 +17,7 @@ function OrderItem({ cartItem }: { cartItem: ICartItem }) {
 					placeholder='blur'
 					className='h-36 w-auto rounded'
 				/>
-				<span className='absolute -top-3 -right-3 flex h-6 w-6 items-center justify-center rounded-full bg-teal-400 text-white'>
+				<span className='absolute -right-3 -top-3 flex h-6 w-6 items-center justify-center rounded-full bg-teal-400 text-white'>
 					{cartItem.quantity}
 				</span>
 			</div>

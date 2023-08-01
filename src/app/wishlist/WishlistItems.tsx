@@ -17,7 +17,7 @@ function WishlistItem({ wishlistItem }: { wishlistItem: IProduct }) {
 		<li className='relative w-[28rem] rounded border-2 p-5 shadow-lg'>
 			<button
 				onClick={removeItem}
-				className='absolute top-2 right-2 h-7 w-7 items-center justify-center rounded-full bg-red-400 text-lg text-white'
+				className='absolute right-2 top-2 h-7 w-7 items-center justify-center rounded-full bg-red-400 text-lg text-white'
 			>
 				<i className='ri-close-fill'></i>
 			</button>

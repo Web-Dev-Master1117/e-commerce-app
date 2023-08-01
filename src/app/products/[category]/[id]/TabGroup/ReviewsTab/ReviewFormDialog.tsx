@@ -45,7 +45,7 @@ export default function ReviewFormDialog() {
 							/>
 						</div>
 
-						<button onClick={() => setIsOpen(false)} className='absolute top-0 right-3 text-xl'>
+						<button onClick={() => setIsOpen(false)} className='absolute right-3 top-0 text-xl'>
 							<i className='ri-close-fill'></i>
 						</button>
 					</Dialog.Panel>

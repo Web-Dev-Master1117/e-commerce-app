@@ -12,7 +12,7 @@ export default function ProductCardActions({ product }: { product: IProduct }) {
 	const [isItemWished, setIsItemWished] = useState(false);
 	useEffect(
 		() => setIsItemWished(!wishlistItems.every(({ id }) => id !== product.id)),
-		[wishlistItems, product]
+		[wishlistItems, product],
 	);
 
 	const handleAddRemoveWishlistItems = () =>
@@ -28,7 +28,7 @@ export default function ProductCardActions({ product }: { product: IProduct }) {
 	const [isCompareItem, setIsCompareItem] = useState(false);
 	useEffect(
 		() => setIsCompareItem(!compareItems.every(({ id }) => id !== product.id)),
-		[compareItems, product]
+		[compareItems, product],
 	);
 
 	const handleAddRemoveCompareItems = () =>

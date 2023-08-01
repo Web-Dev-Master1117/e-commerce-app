@@ -62,9 +62,7 @@ export default function FeaturedProductsCarousel() {
 			},
 		},
 
-		[
-			/*autoPlaySliderPlugin*/
-		]
+		[autoPlaySliderPlugin],
 	);
 
 	useEffect(() => {
@@ -127,7 +125,7 @@ export default function FeaturedProductsCarousel() {
 							>
 								<Link
 									href={`/products/${product.category}/${product.id}`}
-									className='cursor-pointer rounded border-2 border-black py-3 px-6 font-semibold text-black duration-300 hover:bg-black hover:text-white dark:border-white dark:text-white md:border-white md:text-white md:hover:bg-white md:hover:text-black'
+									className='cursor-pointer rounded border-2 border-black px-6 py-3 font-semibold text-black duration-300 hover:bg-black hover:text-white dark:border-white dark:text-white md:border-white md:text-white md:hover:bg-white md:hover:text-black'
 								>
 									SHOP NOW
 								</Link>
@@ -145,7 +143,7 @@ export default function FeaturedProductsCarousel() {
 						>
 							<span
 								className={`${slideButtonClasses(
-									index
+									index,
 								)} cursor-pointer rounded-full border border-black bg-black duration-300`}
 							/>
 						</li>

@@ -25,7 +25,7 @@ export default function HeaderLeft() {
 			<li className='relative hidden cursor-pointer hover:opacity-50 md:block'>
 				<Link href='/compare'>
 					{hasCompareItems && (
-						<span className='absolute right-3 bottom-4 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
+						<span className='absolute bottom-4 right-3 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
 							{compareItemsNumber}
 						</span>
 					)}
@@ -35,7 +35,7 @@ export default function HeaderLeft() {
 			<li className='relative cursor-pointer hover:opacity-50 md:block'>
 				<Link href='/wishlist'>
 					{hasWishlistItems && (
-						<span className='absolute right-3 bottom-4 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
+						<span className='absolute bottom-4 right-3 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
 							{wishlistItemsNumber}
 						</span>
 					)}

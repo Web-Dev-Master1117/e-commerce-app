@@ -59,7 +59,7 @@ export default function ThumbnailSlider({ product }: { product: IProduct }) {
 			renderMode: 'performance',
 			vertical: true,
 		},
-		[ThumbnailPlugin(instanceRef)]
+		[ThumbnailPlugin(instanceRef)],
 	);
 
 	const slideButtonClasses = (index: number) =>
@@ -91,7 +91,7 @@ export default function ThumbnailSlider({ product }: { product: IProduct }) {
 							<span
 								onClick={() => instanceRef.current?.moveToIdx(index)}
 								className={`${slideButtonClasses(
-									index
+									index,
 								)} cursor-pointer rounded-full border border-black bg-black duration-300`}
 							/>
 						</li>

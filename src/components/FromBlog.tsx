@@ -22,7 +22,7 @@ export default function FromBlog() {
 						/>
 						<button
 							type='button'
-							className='mx-auto w-fit border border-teal-400 py-1 px-3 text-xs uppercase text-gray-400 duration-300 hover:bg-teal-400 hover:text-white'
+							className='mx-auto w-fit border border-teal-400 px-3 py-1 text-xs uppercase text-gray-400 duration-300 hover:bg-teal-400 hover:text-white'
 						>
 							{blogHeadline.tags[0]}
 						</button>
@@ -31,7 +31,7 @@ export default function FromBlog() {
 				))}
 			</ul>
 
-			<button className='mx-auto mb-14 block w-fit rounded border-2 border-black bg-black py-3 px-6 font-semibold text-white duration-300 hover:bg-white hover:text-black dark:border-white dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
+			<button className='mx-auto mb-14 block w-fit rounded border-2 border-black bg-black px-6 py-3 font-semibold text-white duration-300 hover:bg-white hover:text-black dark:border-white dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
 				READ MORE
 			</button>
 		</section>

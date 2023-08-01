@@ -40,7 +40,7 @@ export default function ProductsCarousel() {
 
 	const canPrev = Boolean(loaded && instanceRef.current && currentSlide !== 0);
 	const canNext = Boolean(
-		loaded && instanceRef.current && currentSlide !== instanceRef.current.track.details.maxIdx
+		loaded && instanceRef.current && currentSlide !== instanceRef.current.track.details.maxIdx,
 	);
 
 	const arrowClasses = (show: boolean) =>
@@ -52,7 +52,7 @@ export default function ProductsCarousel() {
 			<div className='flex items-center justify-center gap-3 py-14'>
 				<button
 					className={`${arrowClasses(
-						canPrev
+						canPrev,
 					)} flex h-10 w-10 items-center justify-center rounded-full border-2 border-dark duration-300 hover:bg-black hover:text-white dark:border-white hover:dark:bg-white hover:dark:text-black`}
 					onClick={() => instanceRef.current?.prev()}
 				>
@@ -72,7 +72,7 @@ export default function ProductsCarousel() {
 
 				<button
 					className={`${arrowClasses(
-						canNext
+						canNext,
 					)} flex h-10 w-10 items-center justify-center rounded-full border-2 border-dark duration-300 hover:bg-black hover:text-white dark:border-white hover:dark:bg-white hover:dark:text-black`}
 					onClick={() => instanceRef.current?.next()}
 				>

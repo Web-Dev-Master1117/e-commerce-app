@@ -32,7 +32,7 @@ export default function ShoppingCart() {
 	};
 
 	const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = Array.from(
-		cartItems.values()
+		cartItems.values(),
 	).map(({ quantity, stripePriceId }) => ({
 		quantity,
 		price: stripePriceId,
@@ -52,7 +52,7 @@ export default function ShoppingCart() {
 				enter='duration-300 ease-in-out'
 			>
 				<div
-					className='fixed top-0 left-0 z-30 h-screen w-screen bg-black/75 text-xl'
+					className='fixed left-0 top-0 z-30 h-screen w-screen bg-black/75 text-xl'
 					onClick={closeSidebar}
 				/>
 			</Transition.Child>
@@ -81,7 +81,7 @@ export default function ShoppingCart() {
 				leave='duration-300 ease-in-out'
 				enter='duration-300 ease-in-out'
 			>
-				<aside className='fixed top-0 right-0 z-30 flex h-screen w-80 flex-col gap-y-5 overflow-y-auto bg-white text-base shadow-lg dark:bg-dark'>
+				<aside className='fixed right-0 top-0 z-30 flex h-screen w-80 flex-col gap-y-5 overflow-y-auto bg-white text-base shadow-lg dark:bg-dark'>
 					<h3 className='px-5 pt-5 font-secondary text-3xl'>Shopping Cart</h3>
 					{showCartItems && (
 						<ul className='space-y-3 overflow-auto pl-5'>

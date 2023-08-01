@@ -24,7 +24,7 @@ export default function CompareTable() {
 				<tr className='bg-neutral-100 dark:bg-neutral-900'>
 					<th></th>
 					{compareItems.map((product, index) => (
-						<th key={index} className='space-y-3 px-4 pt-6 pb-3'>
+						<th key={index} className='space-y-3 px-4 pb-3 pt-6'>
 							<Link href={`products/${product.category}/${product.id}`}>
 								<Image
 									alt='product image'

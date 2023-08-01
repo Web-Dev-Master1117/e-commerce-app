@@ -22,7 +22,7 @@ export default function ProductCard({ product }: IProductCardProps) {
 					alt='product image'
 					src={product.altImage}
 					quality={100}
-					className='absolute top-0 right-0 rounded opacity-0 duration-700 ease-in-out hover:scale-105 hover:opacity-100'
+					className='absolute right-0 top-0 rounded opacity-0 duration-700 ease-in-out hover:scale-105 hover:opacity-100'
 					placeholder='blur'
 				/>
 

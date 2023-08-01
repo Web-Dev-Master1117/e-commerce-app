@@ -33,7 +33,7 @@ export default function ProductsCategories() {
 								{CATEGORIES.map((cat, index) => (
 									<Listbox.Option
 										key={index}
-										className='flex justify-between gap-3 py-2 px-5 ui-selected:bg-black ui-selected:text-white ui-active:bg-black ui-active:text-white dark:bg-black dark:ui-selected:bg-white dark:ui-selected:text-black dark:ui-active:bg-white dark:ui-active:text-black'
+										className='flex justify-between gap-3 px-5 py-2 ui-selected:bg-black ui-selected:text-white ui-active:bg-black ui-active:text-white dark:bg-black dark:ui-selected:bg-white dark:ui-selected:text-black dark:ui-active:bg-white dark:ui-active:text-black'
 										value={cat}
 									>
 										<span>{cat}</span>

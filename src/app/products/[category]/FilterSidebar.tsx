@@ -26,7 +26,7 @@ function FilterMenu() {
 						<span>Size</span>
 						<i
 							className={`ri-arrow-down-s-line ${arrowClasses(
-								sizeFilterExpanded
+								sizeFilterExpanded,
 							)} cursor-pointer transition-transform duration-500`}
 							onClick={() => setSizeFilterExpanded((prev) => !prev)}
 						/>
@@ -63,7 +63,7 @@ function FilterMenu() {
 						<span>Colors</span>
 						<i
 							className={`ri-arrow-down-s-line ${arrowClasses(
-								colorFilterExpanded
+								colorFilterExpanded,
 							)} cursor-pointer transition-transform duration-500`}
 							onClick={() => setColorFilterExpanded((prev) => !prev)}
 						/>
@@ -96,7 +96,7 @@ function FilterMenu() {
 						<span>Brands</span>
 						<i
 							className={`ri-arrow-down-s-line ${arrowClasses(
-								brandsFilterExpanded
+								brandsFilterExpanded,
 							)} cursor-pointer transition-transform duration-500`}
 							onClick={() => setBrandsFilterExpanded((prev) => !prev)}
 						/>
@@ -159,7 +159,7 @@ function FilterMenu() {
 						<span>Categories</span>
 						<i
 							className={`ri-arrow-down-s-line ${arrowClasses(
-								categoriesFilterExpanded
+								categoriesFilterExpanded,
 							)} cursor-pointer transition-transform duration-500`}
 							onClick={() => setCategoriesFilterExpanded((prev) => !prev)}
 						/>
@@ -174,7 +174,7 @@ function FilterMenu() {
 						leave='duration-300'
 						enter='duration-300'
 					>
-						<ul className='space-y-3 pt-3 pl-5 uppercase text-gray-400'>
+						<ul className='space-y-3 pl-5 pt-3 uppercase text-gray-400'>
 							{CATEGORIES.map((category, index) => (
 								<li key={index}>
 									<Link
@@ -195,7 +195,7 @@ function FilterMenu() {
 						<span>Price</span>
 						<i
 							className={`ri-arrow-down-s-line ${arrowClasses(
-								priceFilterExpanded
+								priceFilterExpanded,
 							)} cursor-pointer transition-transform duration-500`}
 							onClick={() => setPriceFilterExpanded((prev) => !prev)}
 						/>
@@ -211,7 +211,7 @@ function FilterMenu() {
 						leave='duration-300'
 						enter='duration-300'
 					>
-						<ul className='space-y-3 pt-3 pl-5 text-gray-400'>
+						<ul className='space-y-3 pl-5 pt-3 text-gray-400'>
 							<li className='flex gap-x-3'>
 								<span className='my-auto w-12'>From:</span>
 								<input className='w-32 rounded border p-1' type='text' />
@@ -258,7 +258,7 @@ export default function FilterSidebar() {
 					enter='duration-300 ease-in-out'
 				>
 					<div
-						className='fixed top-0 left-0 z-30 h-screen w-screen bg-black/75 text-xl'
+						className='fixed left-0 top-0 z-30 h-screen w-screen bg-black/75 text-xl'
 						onClick={() => setFilterSidebarOpen(false)}
 					/>
 				</Transition.Child>
@@ -287,7 +287,7 @@ export default function FilterSidebar() {
 					leave='duration-300 ease-in-out'
 					enter='duration-300 ease-in-out'
 				>
-					<aside className='fixed top-0 left-0 z-30 flex h-screen w-80 flex-col overflow-y-auto bg-white p-5 text-base font-semibold shadow-lg dark:bg-dark'>
+					<aside className='fixed left-0 top-0 z-30 flex h-screen w-80 flex-col overflow-y-auto bg-white p-5 text-base font-semibold shadow-lg dark:bg-dark'>
 						<FilterMenu />
 					</aside>
 				</Transition.Child>

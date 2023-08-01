@@ -52,7 +52,7 @@ export default function Sidebar() {
 				enter='duration-300 ease-in-out'
 			>
 				<div
-					className='fixed top-0 left-0 z-30 h-screen w-screen bg-black/75 text-xl'
+					className='fixed left-0 top-0 z-30 h-screen w-screen bg-black/75 text-xl'
 					onClick={closeSidebar}
 				/>
 			</Transition.Child>
@@ -81,7 +81,7 @@ export default function Sidebar() {
 				leave='duration-300 ease-in-out'
 				enter='duration-300 ease-in-out'
 			>
-				<aside className='fixed top-0 left-0 z-30 flex h-screen w-72 flex-col overflow-y-auto bg-white p-5 text-base font-semibold shadow-lg dark:bg-dark'>
+				<aside className='fixed left-0 top-0 z-30 flex h-screen w-72 flex-col overflow-y-auto bg-white p-5 text-base font-semibold shadow-lg dark:bg-dark'>
 					<ul className='space-y-5'>
 						<li>
 							<Link href='/'>Home</Link>

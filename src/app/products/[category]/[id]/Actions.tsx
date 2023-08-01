@@ -32,7 +32,7 @@ export default function Actions({ product }: { product: IProduct }) {
 	const [isItemWished, setIsItemWished] = useState(false);
 	useEffect(
 		() => setIsItemWished(!wishlistItems.every(({ id }) => id !== product.id)),
-		[wishlistItems, product]
+		[wishlistItems, product],
 	);
 
 	const handleAddRemoveWishlistItems = () =>
@@ -46,7 +46,7 @@ export default function Actions({ product }: { product: IProduct }) {
 	const [isCompareItem, setIsCompareItem] = useState(false);
 	useEffect(
 		() => setIsCompareItem(!compareItems.every(({ id }) => id !== product.id)),
-		[compareItems, product.id]
+		[compareItems, product.id],
 	);
 
 	const handleAddRemoveCompareItems = () =>
@@ -78,7 +78,7 @@ export default function Actions({ product }: { product: IProduct }) {
 			<div className='flex items-center'>
 				<span className='text-3xl'>${product.discount ? discountedPrice : price}</span>
 				{Boolean(product.discount) && (
-					<div className='before:content-[" "] relative pl-8 before:absolute before:top-0 before:left-3 before:h-full before:w-px before:rotate-[25deg] before:bg-slate-400'>
+					<div className='before:content-[" "] relative pl-8 before:absolute before:left-3 before:top-0 before:h-full before:w-px before:rotate-[25deg] before:bg-slate-400'>
 						<h3 className='text-gray-400 line-through'>${price}</h3>
 						<h3 className='text-red-400'>-{product.discount}%</h3>
 					</div>

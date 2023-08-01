@@ -9,7 +9,7 @@ import Stripe from 'stripe';
 export default function CartInfo() {
 	const cartItems = useRecoilValue(cartItemsState);
 	const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = Array.from(
-		cartItems.values()
+		cartItems.values(),
 	).map(({ quantity, stripePriceId }) => ({
 		quantity,
 		price: stripePriceId,

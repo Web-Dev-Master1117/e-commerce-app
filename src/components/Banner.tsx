@@ -10,7 +10,7 @@ export default function Banner() {
 						Get ready! <br />
 						Winter is coming..
 					</h3>
-					<button className='self-center rounded border-2 border-black py-3 px-6 font-semibold duration-300 hover:bg-black hover:text-white lg:self-start'>
+					<button className='self-center rounded border-2 border-black px-6 py-3 font-semibold duration-300 hover:bg-black hover:text-white lg:self-start'>
 						GO GET IT
 					</button>
 				</div>
