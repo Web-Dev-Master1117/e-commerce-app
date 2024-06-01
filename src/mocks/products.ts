@@ -74,7 +74,7 @@ const PRODUCTS: IProduct[] = [
 			},
 		],
 		stripePriceId:
-			/*cspell: disable*/ 'price_1Mkp8yDK9f6RLy6szX28Qgnq/*cspell: enable*/ ',
+			/*cspell: disable*/ 'price_1Mkp8yDK9f6RLy6szX28Qgnq' /*cspell: enable*/,
 	},
 	{
 		id: 1,
