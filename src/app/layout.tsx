@@ -7,11 +7,24 @@ import MobileNavbar from '@/components/MobileNavbar'
 import ShoppingCart from '@/components/ShoppingCart'
 import Sidebar from '@/components/Sidebar'
 import ThemeButton from '@/components/ThemeButton'
-import { primaryFont, secondaryFont } from '@/fonts'
-import { RecoilProvider } from '@/providers/recoil-provider'
 import type { Metadata } from 'next'
-import { NextThemeProvider } from '../providers/theme-provider'
+import { Montserrat, Prata } from 'next/font/google'
 import './globals.css'
+import { Providers } from './providers'
+
+export const primaryFont = Montserrat({
+	weight: ['400', '500', '600'],
+	variable: '--font-primary',
+	subsets: ['latin'],
+	display: 'swap',
+})
+
+export const secondaryFont = Prata({
+	weight: ['400'],
+	variable: '--font-secondary',
+	subsets: ['latin'],
+	display: 'swap',
+})
 
 export const metadata: Metadata = {
 	title: 'EStore',
@@ -40,20 +53,18 @@ export default function RootLayout({
 			</head>
 
 			<body className='flex min-h-screen flex-col font-primary'>
-				<NextThemeProvider>
-					<RecoilProvider>
-						<Header />
-						<SearchBar />
-						<Sidebar />
-						<ShoppingCart />
-						{children}
-						<Footer />
-						<MobileNavbar />
-						<ThemeButton />
-						<CompareHoverButton />
-						<Alert />
-					</RecoilProvider>
-				</NextThemeProvider>
+				<Providers>
+					<Header />
+					<SearchBar />
+					<Sidebar />
+					<ShoppingCart />
+					{children}
+					<Footer />
+					<MobileNavbar />
+					<ThemeButton />
+					<CompareHoverButton />
+					<Alert />
+				</Providers>
 			</body>
 		</html>
 	)

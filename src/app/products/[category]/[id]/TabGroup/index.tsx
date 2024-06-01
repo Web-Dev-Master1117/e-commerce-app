@@ -1,6 +1,6 @@
 'use client'
 
-import { IProduct } from '@/common/interfaces'
+import { IProduct } from '@/definitions/interfaces'
 import CustomTab from './CustomTab'
 import DetailsTab from './DetailsTab'
 import ReviewsTab from './ReviewsTab'

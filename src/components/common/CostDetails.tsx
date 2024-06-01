@@ -1,7 +1,7 @@
 'use client'
 
-import { ICartStats } from '@/common/interfaces'
-import { TShippingPlan } from '@/common/types'
+import { ICartStats } from '@/definitions/interfaces'
+import { TShippingPlan } from '@/definitions/types'
 import { shippingPlanState } from '@/recoil/atoms'
 import { cartStatsState } from '@/recoil/selectors'
 import { useEffect, useState } from 'react'

@@ -1,6 +1,6 @@
 'use client'
 
-import { ICartItem } from '@/common/interfaces'
+import { ICartItem } from '@/definitions/interfaces'
 import useCheckout from '@/hooks/checkout'
 import { cartItemsState, shoppingCartOpenState } from '@/recoil/atoms'
 import { getDiscountedValue } from '@/utils'

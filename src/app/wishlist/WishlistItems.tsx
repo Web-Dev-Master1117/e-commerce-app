@@ -1,6 +1,6 @@
 'use client'
 
-import { IProduct } from '@/common/interfaces'
+import { IProduct } from '@/definitions/interfaces'
 import { wishlistItemsState } from '@/recoil/atoms'
 import { getDiscountedValue } from '@/utils'
 import Image from 'next/image'

@@ -1,4 +1,4 @@
-import { TShippingPlan } from '@/common/types'
+import { TShippingPlan } from '@/definitions/types'
 import { NextRequest } from 'next/server'
 import Stripe from 'stripe'
 

@@ -1,4 +1,4 @@
-import { TCartItems } from '@/common/types'
+import { TCartItems } from '@/definitions/types'
 import { AtomEffect } from 'recoil'
 
 export const cartItemsPersistEffect: AtomEffect<TCartItems> = ({

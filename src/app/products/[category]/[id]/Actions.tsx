@@ -1,7 +1,7 @@
 'use client'
 
-import { IProduct } from '@/common/interfaces'
-import { TSize } from '@/common/types'
+import { IProduct } from '@/definitions/interfaces'
+import { TSize } from '@/definitions/types'
 import useCheckout from '@/hooks/checkout'
 import {
 	cartItemsState,

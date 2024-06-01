@@ -1,6 +1,6 @@
 'use client'
 
-import { ICartItem } from '@/common/interfaces'
+import { ICartItem } from '@/definitions/interfaces'
 import { cartItemsState } from '@/recoil/atoms'
 import { getDiscountedValue } from '@/utils'
 import Image from 'next/image'

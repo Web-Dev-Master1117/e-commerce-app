@@ -1,6 +1,6 @@
 'use client'
 
-import { IProduct } from '@/common/interfaces'
+import { IProduct } from '@/definitions/interfaces'
 import PRODUCTS from '@/mocks/products'
 import { searchBarOpenState } from '@/recoil/atoms'
 import { Transition } from '@headlessui/react'

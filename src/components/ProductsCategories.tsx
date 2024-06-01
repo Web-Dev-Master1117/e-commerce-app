@@ -1,7 +1,7 @@
 'use client'
 
-import { TCategory } from '@/common/types'
 import { CATEGORIES } from '@/constants'
+import { TCategory } from '@/definitions/types'
 import PRODUCTS from '@/mocks/products'
 import { Listbox, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'

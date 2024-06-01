@@ -1,4 +1,4 @@
-import { IProduct } from '@/common/interfaces'
+import { IProduct } from '@/definitions/interfaces'
 import { getDiscountedValue } from '@/utils'
 import Image from 'next/image'
 import ProductCardActions from './ProductCardActions'

@@ -1,5 +1,5 @@
-import { IProduct } from '@/common/interfaces'
-import { TCartItems, TShippingPlan } from '@/common/types'
+import { IProduct } from '@/definitions/interfaces'
+import { TCartItems, TShippingPlan } from '@/definitions/types'
 import { atom } from 'recoil'
 import { cartItemsPersistEffect, persistEffect } from './effects'
 

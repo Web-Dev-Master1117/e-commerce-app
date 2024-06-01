@@ -1,5 +1,5 @@
 'use client'
-import { IProduct } from '@/common/interfaces'
+import { IProduct } from '@/definitions/interfaces'
 import { compareItemsState, wishlistItemsState } from '@/recoil/atoms'
 import { tw } from '@/utils'
 import Link from 'next/link'

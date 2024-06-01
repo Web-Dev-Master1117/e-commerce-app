@@ -1,4 +1,4 @@
-import { IProduct } from '@/common/interfaces'
+import { IProduct } from '@/definitions/interfaces'
 import { Tab } from '@headlessui/react'
 
 export default function DetailsTab({ product }: { product: IProduct }) {

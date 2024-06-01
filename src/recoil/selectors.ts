@@ -1,4 +1,4 @@
-import { ICartStats } from '@/common/interfaces'
+import { ICartStats } from '@/definitions/interfaces'
 import { getDiscountedValue } from '@/utils'
 import { selector } from 'recoil'
 import { cartItemsState, shippingPlanState } from './atoms'

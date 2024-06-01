@@ -1,6 +1,6 @@
 'use client'
 
-import { IProduct } from '@/common/interfaces'
+import { IProduct } from '@/definitions/interfaces'
 import { tw } from '@/utils'
 import {
 	KeenSliderInstance,

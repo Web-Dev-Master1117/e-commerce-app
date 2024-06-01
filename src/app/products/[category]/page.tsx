@@ -1,6 +1,6 @@
-import { TCategory } from '@/common/types'
 import ProductCard from '@/components/common/ProductCard'
 import { CATEGORIES } from '@/constants'
+import { TCategory } from '@/definitions/types'
 import PRODUCTS from '@/mocks/products'
 import { capitalize } from '@/utils'
 import { Metadata } from 'next'

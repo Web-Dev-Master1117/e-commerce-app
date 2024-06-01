@@ -45,7 +45,7 @@ import shirtSlide03 from '@/../public/images/products/shirt/slide_03.jpg'
 import shirt04 from '@/../public/images/products/shirt/product_04.jpg'
 import shirt04b from '@/../public/images/products/shirt/product_04b.jpg'
 import shirtSlide04 from '@/../public/images/products/shirt/slide_04.jpg'
-import { IProduct } from '@/common/interfaces'
+import { IProduct } from '@/definitions/interfaces'
 import { tw } from '@/utils'
 
 const PRODUCTS: IProduct[] = [
