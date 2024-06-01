@@ -1,8 +1,8 @@
-'use client';
+'use client'
 
-import { ReactNode } from 'react';
-import { RecoilRoot } from 'recoil';
+import { ReactNode } from 'react'
+import { RecoilRoot } from 'recoil'
 
 export function RecoilProvider({ children }: { children: ReactNode }) {
-	return <RecoilRoot>{children}</RecoilRoot>;
+	return <RecoilRoot>{children}</RecoilRoot>
 }

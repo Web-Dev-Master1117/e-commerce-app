@@ -1,10 +1,10 @@
-import { IProduct } from '@/common/interfaces';
-import { getDiscountedValue } from '@/utils';
-import Image from 'next/image';
-import ProductCardActions from './ProductCardActions';
+import { IProduct } from '@/common/interfaces'
+import { getDiscountedValue } from '@/utils'
+import Image from 'next/image'
+import ProductCardActions from './ProductCardActions'
 
 interface IProductCardProps {
-	product: IProduct;
+	product: IProduct
 }
 
 export default function ProductCard({ product }: IProductCardProps) {
@@ -38,13 +38,21 @@ export default function ProductCard({ product }: IProductCardProps) {
 			<div>
 				<h3>{product.name}</h3>
 				<h3 className='flex justify-center gap-2'>
-					<span className={product.discount ? 'text-gray-400 line-through' : ''}>
+					<span
+						className={
+							product.discount ? 'text-gray-400 line-through' : ''
+						}
+					>
 						${product.price.toFixed(2)}
 					</span>
 					{Boolean(product.discount) &&
-						'$' + getDiscountedValue(product.price, product.discount).toFixed(2)}
+						'$' +
+							getDiscountedValue(
+								product.price,
+								product.discount
+							).toFixed(2)}
 				</h3>
 			</div>
 		</div>
-	);
+	)
 }

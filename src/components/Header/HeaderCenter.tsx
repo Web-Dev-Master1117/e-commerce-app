@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import ProductsMenu from './ProductsMenu';
+import Link from 'next/link'
+import ProductsMenu from './ProductsMenu'
 
 export default function HeaderCenter() {
 	return (
@@ -43,5 +43,5 @@ export default function HeaderCenter() {
 				</li>
 			</ul>
 		</nav>
-	);
+	)
 }

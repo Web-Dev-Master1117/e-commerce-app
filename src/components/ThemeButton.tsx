@@ -1,25 +1,25 @@
-'use client';
+'use client'
 
-import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
 
 export default function ThemeButton() {
-	const { setTheme, theme } = useTheme();
-	const [themeIcon, setThemeIcon] = useState('ri-computer-line');
+	const { setTheme, theme } = useTheme()
+	const [themeIcon, setThemeIcon] = useState('ri-computer-line')
 
 	useEffect(() => {
 		switch (theme) {
 			case 'light':
-				setThemeIcon('ri-sun-fill');
-				break;
+				setThemeIcon('ri-sun-fill')
+				break
 			case 'dark':
-				setThemeIcon('ri-moon-line');
-				break;
+				setThemeIcon('ri-moon-line')
+				break
 			default:
-				setThemeIcon('ri-computer-line');
-				break;
+				setThemeIcon('ri-computer-line')
+				break
 		}
-	}, [setTheme, theme]);
+	}, [setTheme, theme])
 
 	return (
 		<div className='group fixed bottom-2 right-2 hidden h-10 w-10 items-center justify-center rounded-full bg-teal-400 text-xl text-white sm:flex'>
@@ -45,5 +45,5 @@ export default function ThemeButton() {
 				</li>
 			</ul>
 		</div>
-	);
+	)
 }

@@ -1,47 +1,58 @@
-'use client';
+'use client'
 
-import { compareItemsState, shoppingCartOpenState, wishlistItemsState } from '@/recoil/atoms';
-import { cartStatsState } from '@/recoil/selectors';
-import { useTheme } from 'next-themes';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+	compareItemsState,
+	shoppingCartOpenState,
+	wishlistItemsState,
+} from '@/recoil/atoms'
+import { cartStatsState } from '@/recoil/selectors'
+import { useTheme } from 'next-themes'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function MobileNavbar() {
-	const setShoppingCartOpen = useSetRecoilState(shoppingCartOpenState);
+	const setShoppingCartOpen = useSetRecoilState(shoppingCartOpenState)
 
-	const { itemsNumber } = useRecoilValue(cartStatsState);
-	const [showItemsNumber, setShowItemsNumber] = useState(false);
-	useEffect(() => setShowItemsNumber(Boolean(itemsNumber)), [itemsNumber]);
+	const { itemsNumber } = useRecoilValue(cartStatsState)
+	const [showItemsNumber, setShowItemsNumber] = useState(false)
+	useEffect(() => setShowItemsNumber(Boolean(itemsNumber)), [itemsNumber])
 
-	const wishlistItemsNumber = useRecoilValue(wishlistItemsState).length;
-	const [hasWishlistItems, setHasWishlistItems] = useState(false);
-	useEffect(() => setHasWishlistItems(Boolean(wishlistItemsNumber)), [wishlistItemsNumber]);
+	const wishlistItemsNumber = useRecoilValue(wishlistItemsState).length
+	const [hasWishlistItems, setHasWishlistItems] = useState(false)
+	useEffect(
+		() => setHasWishlistItems(Boolean(wishlistItemsNumber)),
+		[wishlistItemsNumber]
+	)
 
-	const [hasCompareItems, setHasCompareItems] = useState(false);
-	const compareItemsNumber = useRecoilValue(compareItemsState).length;
-	useEffect(() => setHasCompareItems(Boolean(compareItemsNumber)), [compareItemsNumber]);
+	const [hasCompareItems, setHasCompareItems] = useState(false)
+	const compareItemsNumber = useRecoilValue(compareItemsState).length
+	useEffect(
+		() => setHasCompareItems(Boolean(compareItemsNumber)),
+		[compareItemsNumber]
+	)
 
-	const { setTheme, theme } = useTheme();
-	const [themeIcon, setThemeIcon] = useState('ri-computer-line');
+	const { setTheme, theme } = useTheme()
+	const [themeIcon, setThemeIcon] = useState('ri-computer-line')
 
 	useEffect(() => {
 		switch (theme) {
 			case 'light':
-				setThemeIcon('ri-sun-line');
-				break;
+				setThemeIcon('ri-sun-line')
+				break
 			case 'dark':
-				setThemeIcon('ri-moon-line');
-				break;
+				setThemeIcon('ri-moon-line')
+				break
 			default:
-				setThemeIcon('ri-computer-line');
-				break;
+				setThemeIcon('ri-computer-line')
+				break
 		}
-	}, [setTheme, theme]);
+	}, [setTheme, theme])
 
 	const scrollToTop = () => {
-		if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
-	};
+		if (typeof window !== 'undefined')
+			window.scrollTo({ top: 0, behavior: 'smooth' })
+	}
 
 	return (
 		<nav className='fixed bottom-0 left-0 z-20 h-14 w-full bg-white shadow-t-lg dark:bg-dark sm:hidden'>
@@ -71,7 +82,10 @@ export default function MobileNavbar() {
 						)}
 					</Link>
 				</li>
-				<li onClick={() => setShoppingCartOpen(true)} className='relative cursor-pointer'>
+				<li
+					onClick={() => setShoppingCartOpen(true)}
+					className='relative cursor-pointer'
+				>
 					<i className='ri-shopping-bag-2-line'></i>
 					{showItemsNumber && (
 						<span className='absolute bottom-4 left-3 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
@@ -107,5 +121,5 @@ export default function MobileNavbar() {
 				</li>
 			</ul>
 		</nav>
-	);
+	)
 }

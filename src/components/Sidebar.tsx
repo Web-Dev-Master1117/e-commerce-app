@@ -1,44 +1,44 @@
-'use client';
+'use client'
 
-import { APPARELS, PERFUMES, SHOES, SPECIALS } from '@/constants/brands';
-import { sidebarOpenState } from '@/recoil/atoms';
-import { tw } from '@/utils';
-import { Transition } from '@headlessui/react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Fragment, useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { APPARELS, PERFUMES, SHOES, SPECIALS } from '@/constants/brands'
+import { sidebarOpenState } from '@/recoil/atoms'
+import { tw } from '@/utils'
+import { Transition } from '@headlessui/react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { Fragment, useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
 
 //TODO use dialog headless comp to get keyboard shortcuts
 export default function Sidebar() {
-	const [productsMenuOpen, setProductsMenuOpen] = useState(false);
-	const [specialsMenuOpen, setSpecialsMenuOpen] = useState(false);
+	const [productsMenuOpen, setProductsMenuOpen] = useState(false)
+	const [specialsMenuOpen, setSpecialsMenuOpen] = useState(false)
 	const toggleProductsMenu = () => {
-		setProductsMenuOpen((prev) => !prev);
-		setSpecialsMenuOpen(false);
-	};
+		setProductsMenuOpen((prev) => !prev)
+		setSpecialsMenuOpen(false)
+	}
 	const toggleSpecialsMenu = () => {
-		setSpecialsMenuOpen((prev) => !prev);
-		setProductsMenuOpen(false);
-	};
+		setSpecialsMenuOpen((prev) => !prev)
+		setProductsMenuOpen(false)
+	}
 
-	const [sidebarOpen, setSidebarOpen] = useRecoilState(sidebarOpenState);
-	const pathname = usePathname();
-	useEffect(() => setSidebarOpen(false), [pathname, setSidebarOpen]);
-	const closeSidebar = () => setSidebarOpen(false);
+	const [sidebarOpen, setSidebarOpen] = useRecoilState(sidebarOpenState)
+	const pathname = usePathname()
+	useEffect(() => setSidebarOpen(false), [pathname, setSidebarOpen])
+	const closeSidebar = () => setSidebarOpen(false)
 
-	const specialsMenuRotate = specialsMenuOpen ? tw`rotate-0` : tw`rotate-90`;
-	const productsMenuRotate = productsMenuOpen ? tw`rotate-0` : tw`rotate-90`;
+	const specialsMenuRotate = specialsMenuOpen ? tw`rotate-0` : tw`rotate-90`
+	const productsMenuRotate = productsMenuOpen ? tw`rotate-0` : tw`rotate-90`
 
 	useEffect(() => {
-		const style = document.body.style;
-		if (sidebarOpen) style.overflow = 'hidden';
-		else style.overflow = 'auto';
+		const style = document.body.style
+		if (sidebarOpen) style.overflow = 'hidden'
+		else style.overflow = 'auto'
 
 		return () => {
-			style.overflow = 'auto';
-		};
-	}, [sidebarOpen]);
+			style.overflow = 'auto'
+		}
+	}, [sidebarOpen])
 
 	return (
 		<Transition show={sidebarOpen}>
@@ -108,7 +108,9 @@ export default function Sidebar() {
 							>
 								<div className='space-y-5 overflow-hidden pl-10'>
 									<ul className='space-y-3 text-gray-400'>
-										<li className='-ml-5 mt-3 text-black dark:text-white'>Apparel</li>
+										<li className='-ml-5 mt-3 text-black dark:text-white'>
+											Apparel
+										</li>
 										{APPARELS.map((apparel, index) => (
 											<li
 												key={index}
@@ -121,7 +123,9 @@ export default function Sidebar() {
 									</ul>
 
 									<ul className='space-y-3 text-gray-400'>
-										<li className='-ml-5 text-black dark:text-white'>Shoes</li>
+										<li className='-ml-5 text-black dark:text-white'>
+											Shoes
+										</li>
 										{SHOES.map((shoe, index) => (
 											<li
 												key={index}
@@ -134,7 +138,9 @@ export default function Sidebar() {
 									</ul>
 
 									<ul className='space-y-3 text-gray-400'>
-										<li className='-ml-5 text-black dark:text-white'>Perfumes</li>
+										<li className='-ml-5 text-black dark:text-white'>
+											Perfumes
+										</li>
 										{PERFUMES.map((perfume, index) => (
 											<li
 												key={index}
@@ -188,5 +194,5 @@ export default function Sidebar() {
 				</aside>
 			</Transition.Child>
 		</Transition>
-	);
+	)
 }

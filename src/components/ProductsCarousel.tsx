@@ -1,14 +1,14 @@
-'use client';
+'use client'
 
-import PRODUCTS from '@/mocks/products';
-import { tw } from '@/utils';
-import { useKeenSlider } from 'keen-slider/react';
-import { useState } from 'react';
-import ProductCard from './common/ProductCard';
+import PRODUCTS from '@/mocks/products'
+import { tw } from '@/utils'
+import { useKeenSlider } from 'keen-slider/react'
+import { useState } from 'react'
+import ProductCard from './common/ProductCard'
 
 export default function ProductsCarousel() {
-	const [currentSlide, setCurrentSlide] = useState(0);
-	const [loaded, setLoaded] = useState(false);
+	const [currentSlide, setCurrentSlide] = useState(0)
+	const [loaded, setLoaded] = useState(false)
 
 	const [sliderRef, instanceRef] = useKeenSlider({
 		initial: 0,
@@ -31,28 +31,32 @@ export default function ProductsCarousel() {
 		},
 		renderMode: 'performance',
 		slideChanged(slider) {
-			setCurrentSlide(slider.track.details.rel);
+			setCurrentSlide(slider.track.details.rel)
 		},
 		created() {
-			setLoaded(true);
+			setLoaded(true)
 		},
-	});
+	})
 
-	const canPrev = Boolean(loaded && instanceRef.current && currentSlide !== 0);
+	const canPrev = Boolean(loaded && instanceRef.current && currentSlide !== 0)
 	const canNext = Boolean(
-		loaded && instanceRef.current && currentSlide !== instanceRef.current.track.details.maxIdx,
-	);
+		loaded &&
+			instanceRef.current &&
+			currentSlide !== instanceRef.current.track.details.maxIdx
+	)
 
 	const arrowClasses = (show: boolean) =>
-		show ? tw`opacity-100 visible` : tw`opacity-0 invisible`;
+		show ? tw`visible opacity-100` : tw`invisible opacity-0`
 
 	return (
 		<section>
-			<h1 className='pt-14 text-center font-secondary text-4xl'>New Arrivals</h1>
+			<h1 className='pt-14 text-center font-secondary text-4xl'>
+				New Arrivals
+			</h1>
 			<div className='flex items-center justify-center gap-3 py-14'>
 				<button
 					className={`${arrowClasses(
-						canPrev,
+						canPrev
 					)} flex h-10 w-10 items-center justify-center rounded-full border-2 border-dark duration-300 hover:bg-black hover:text-white dark:border-white hover:dark:bg-white hover:dark:text-black`}
 					onClick={() => instanceRef.current?.prev()}
 				>
@@ -72,7 +76,7 @@ export default function ProductsCarousel() {
 
 				<button
 					className={`${arrowClasses(
-						canNext,
+						canNext
 					)} flex h-10 w-10 items-center justify-center rounded-full border-2 border-dark duration-300 hover:bg-black hover:text-white dark:border-white hover:dark:bg-white hover:dark:text-black`}
 					onClick={() => instanceRef.current?.next()}
 				>
@@ -80,5 +84,5 @@ export default function ProductsCarousel() {
 				</button>
 			</div>
 		</section>
-	);
+	)
 }

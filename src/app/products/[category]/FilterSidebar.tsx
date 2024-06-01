@@ -1,22 +1,24 @@
-'use client';
+'use client'
 
-import { CATEGORIES } from '@/constants';
-import { APPARELS, PERFUMES, SHOES } from '@/constants/brands';
-import { tw } from '@/utils';
-import { Transition } from '@headlessui/react';
-import Link from 'next/link';
-import { Fragment, useState } from 'react';
+import { CATEGORIES } from '@/constants'
+import { APPARELS, PERFUMES, SHOES } from '@/constants/brands'
+import { tw } from '@/utils'
+import { Transition } from '@headlessui/react'
+import Link from 'next/link'
+import { Fragment, useState } from 'react'
 
 //TODO add filter functionality
 
 function FilterMenu() {
-	const [colorFilterExpanded, setColorFilterExpanded] = useState(true);
-	const [sizeFilterExpanded, setSizeFilterExpanded] = useState(true);
-	const [brandsFilterExpanded, setBrandsFilterExpanded] = useState(false);
-	const [categoriesFilterExpanded, setCategoriesFilterExpanded] = useState(false);
-	const [priceFilterExpanded, setPriceFilterExpanded] = useState(false);
+	const [colorFilterExpanded, setColorFilterExpanded] = useState(true)
+	const [sizeFilterExpanded, setSizeFilterExpanded] = useState(true)
+	const [brandsFilterExpanded, setBrandsFilterExpanded] = useState(false)
+	const [categoriesFilterExpanded, setCategoriesFilterExpanded] =
+		useState(false)
+	const [priceFilterExpanded, setPriceFilterExpanded] = useState(false)
 
-	const arrowClasses = (rotate: boolean) => (rotate ? tw`rotate-0` : tw`rotate-90`);
+	const arrowClasses = (rotate: boolean) =>
+		rotate ? tw`rotate-0` : tw`rotate-90`
 	return (
 		<>
 			<h1 className='mb-8 text-xl'>Filter</h1>
@@ -26,9 +28,11 @@ function FilterMenu() {
 						<span>Size</span>
 						<i
 							className={`ri-arrow-down-s-line ${arrowClasses(
-								sizeFilterExpanded,
+								sizeFilterExpanded
 							)} cursor-pointer transition-transform duration-500`}
-							onClick={() => setSizeFilterExpanded((prev) => !prev)}
+							onClick={() =>
+								setSizeFilterExpanded((prev) => !prev)
+							}
 						/>
 					</div>
 					<Transition
@@ -63,9 +67,11 @@ function FilterMenu() {
 						<span>Colors</span>
 						<i
 							className={`ri-arrow-down-s-line ${arrowClasses(
-								colorFilterExpanded,
+								colorFilterExpanded
 							)} cursor-pointer transition-transform duration-500`}
-							onClick={() => setColorFilterExpanded((prev) => !prev)}
+							onClick={() =>
+								setColorFilterExpanded((prev) => !prev)
+							}
 						/>
 					</div>
 					<Transition
@@ -96,9 +102,11 @@ function FilterMenu() {
 						<span>Brands</span>
 						<i
 							className={`ri-arrow-down-s-line ${arrowClasses(
-								brandsFilterExpanded,
+								brandsFilterExpanded
 							)} cursor-pointer transition-transform duration-500`}
-							onClick={() => setBrandsFilterExpanded((prev) => !prev)}
+							onClick={() =>
+								setBrandsFilterExpanded((prev) => !prev)
+							}
 						/>
 					</div>
 					<Transition
@@ -113,7 +121,9 @@ function FilterMenu() {
 					>
 						<div className='space-y-5 overflow-hidden pl-10'>
 							<ul className='space-y-3 text-gray-400'>
-								<li className='-ml-5 mt-3 text-black dark:text-white'>Apparel</li>
+								<li className='-ml-5 mt-3 text-black dark:text-white'>
+									Apparel
+								</li>
 								{APPARELS.map((apparel, index) => (
 									<li
 										key={index}
@@ -126,7 +136,9 @@ function FilterMenu() {
 							</ul>
 
 							<ul className='space-y-3 text-gray-400'>
-								<li className='-ml-5 text-black dark:text-white'>Shoes</li>
+								<li className='-ml-5 text-black dark:text-white'>
+									Shoes
+								</li>
 								{SHOES.map((shoe, index) => (
 									<li
 										key={index}
@@ -139,7 +151,9 @@ function FilterMenu() {
 							</ul>
 
 							<ul className='space-y-3 text-gray-400'>
-								<li className='-ml-5 text-black dark:text-white'>Perfumes</li>
+								<li className='-ml-5 text-black dark:text-white'>
+									Perfumes
+								</li>
 								{PERFUMES.map((perfume, index) => (
 									<li
 										key={index}
@@ -159,9 +173,11 @@ function FilterMenu() {
 						<span>Categories</span>
 						<i
 							className={`ri-arrow-down-s-line ${arrowClasses(
-								categoriesFilterExpanded,
+								categoriesFilterExpanded
 							)} cursor-pointer transition-transform duration-500`}
-							onClick={() => setCategoriesFilterExpanded((prev) => !prev)}
+							onClick={() =>
+								setCategoriesFilterExpanded((prev) => !prev)
+							}
 						/>
 					</div>
 					<Transition
@@ -178,7 +194,7 @@ function FilterMenu() {
 							{CATEGORIES.map((category, index) => (
 								<li key={index}>
 									<Link
-										href={`products/${category}`}
+										href={`/products/${category}`}
 										className='group flex items-center gap-2 text-sm hover:text-black dark:hover:text-white'
 									>
 										<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
@@ -195,9 +211,11 @@ function FilterMenu() {
 						<span>Price</span>
 						<i
 							className={`ri-arrow-down-s-line ${arrowClasses(
-								priceFilterExpanded,
+								priceFilterExpanded
 							)} cursor-pointer transition-transform duration-500`}
-							onClick={() => setPriceFilterExpanded((prev) => !prev)}
+							onClick={() =>
+								setPriceFilterExpanded((prev) => !prev)
+							}
 						/>
 					</div>
 					<Transition
@@ -214,22 +232,28 @@ function FilterMenu() {
 						<ul className='space-y-3 pl-5 pt-3 text-gray-400'>
 							<li className='flex gap-x-3'>
 								<span className='my-auto w-12'>From:</span>
-								<input className='w-32 rounded border p-1' type='text' />
+								<input
+									className='w-32 rounded border p-1'
+									type='text'
+								/>
 							</li>
 							<li className='flex gap-x-3'>
 								<span className='my-auto w-12'>To:</span>
-								<input className='w-32 rounded border p-1' type='text' />
+								<input
+									className='w-32 rounded border p-1'
+									type='text'
+								/>
 							</li>
 						</ul>
 					</Transition>
 				</li>
 			</ul>
 		</>
-	);
+	)
 }
 
 export default function FilterSidebar() {
-	const [filterSidebarOpen, setFilterSidebarOpen] = useState(false);
+	const [filterSidebarOpen, setFilterSidebarOpen] = useState(false)
 
 	return (
 		<>
@@ -293,5 +317,5 @@ export default function FilterSidebar() {
 				</Transition.Child>
 			</Transition>
 		</>
-	);
+	)
 }

@@ -1,13 +1,13 @@
-import avatar1 from '@/../public/images/ig_01.jpg';
-import avatar2 from '@/../public/images/ig_02.jpg';
-import avatar3 from '@/../public/images/ig_03.jpg';
-import avatar4 from '@/../public/images/ig_04.jpg';
-import avatar5 from '@/../public/images/ig_05.jpg';
-import { Tab } from '@headlessui/react';
-import Review from './Review';
-import ReviewFormDialog from './ReviewFormDialog';
+import avatar1 from '@/../public/images/ig_01.jpg'
+import avatar2 from '@/../public/images/ig_02.jpg'
+import avatar3 from '@/../public/images/ig_03.jpg'
+import avatar4 from '@/../public/images/ig_04.jpg'
+import avatar5 from '@/../public/images/ig_05.jpg'
+import { Tab } from '@headlessui/react'
+import Review from './Review'
+import ReviewFormDialog from './ReviewFormDialog'
 
-const avatars = [avatar1, avatar2, avatar3, avatar4, avatar5];
+const avatars = [avatar1, avatar2, avatar3, avatar4, avatar5]
 
 export default function ReviewsTab() {
 	return (
@@ -31,5 +31,5 @@ export default function ReviewsTab() {
 				<Review key={index} image={avatar} />
 			))}
 		</Tab.Panel>
-	);
+	)
 }

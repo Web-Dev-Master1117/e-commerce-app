@@ -1,26 +1,26 @@
-import ProductsCarousel from '@/components/ProductsCarousel';
-import PRODUCTS from '@/mocks/products';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import Actions from './Actions';
-import TabGroup from './TabGroup';
-import ThumbnailSlider from './ThumbnailSlider';
+import ProductsCarousel from '@/components/ProductsCarousel'
+import PRODUCTS from '@/mocks/products'
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import Actions from './Actions'
+import TabGroup from './TabGroup'
+import ThumbnailSlider from './ThumbnailSlider'
 
 interface IProps {
-	params: { id: string };
+	params: { id: string }
 }
 
-const getProduct = (id: string) => PRODUCTS[parseInt(id)];
+const getProduct = (id: string) => PRODUCTS[parseInt(id)]
 
 export async function generateMetadata({ params }: IProps) {
-	const product = getProduct(params.id);
-	if (!product) notFound();
-	return { title: product.name };
+	const product = getProduct(params.id)
+	if (!product) notFound()
+	return { title: product.name }
 }
 
 export default function page({ params }: IProps) {
-	const product = getProduct(params.id);
-	if (!product) notFound();
+	const product = getProduct(params.id)
+	if (!product) notFound()
 	return (
 		<main>
 			<section className='pb-14 pt-5'>
@@ -30,9 +30,13 @@ export default function page({ params }: IProps) {
 					<i className='ri-arrow-right-s-line'></i>
 					<Link href='/products/all'>Product</Link>
 					<i className='ri-arrow-right-s-line'></i>
-					<Link href={`/products/${product.category}`}>{product.category}</Link>
+					<Link href={`/products/${product.category}`}>
+						{product.category}
+					</Link>
 					<i className='ri-arrow-right-s-line'></i>
-					<span className='overflow-hidden text-ellipsis whitespace-nowrap'>{product.name}</span>
+					<span className='overflow-hidden text-ellipsis whitespace-nowrap'>
+						{product.name}
+					</span>
 				</div>
 				<div className='flex flex-wrap items-center justify-center gap-10'>
 					<ThumbnailSlider product={product} />
@@ -42,5 +46,5 @@ export default function page({ params }: IProps) {
 			<TabGroup product={product} />
 			<ProductsCarousel />
 		</main>
-	);
+	)
 }

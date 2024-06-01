@@ -1,19 +1,19 @@
-import { tw } from '@/utils';
-import { ReactNode } from 'react';
+import { tw } from '@/utils'
+import { ReactNode } from 'react'
 
 export default function Tooltip({
 	children,
 	title,
 	postilion,
 }: {
-	children: ReactNode;
-	title: string;
-	postilion: 'top' | 'bottom';
+	children: ReactNode
+	title: string
+	postilion: 'top' | 'bottom'
 }) {
 	const positionClasses = {
-		top: tw`-top-7 `,
+		top: tw`-top-7`,
 		bottom: tw`-bottom-7`,
-	};
+	}
 	return (
 		<div className='relative'>
 			<span className='peer'>{children}</span>
@@ -23,5 +23,5 @@ export default function Tooltip({
 				{title}
 			</span>
 		</div>
-	);
+	)
 }

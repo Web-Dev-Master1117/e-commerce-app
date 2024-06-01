@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
 const SERVICES = [
 	{
@@ -21,7 +21,7 @@ const SERVICES = [
 		name: 'privacy policy',
 		link: '/not-implemented',
 	},
-];
+]
 
 const PAGES = [
 	{
@@ -44,7 +44,7 @@ const PAGES = [
 		name: 'checkout',
 		link: '/not-implemented',
 	},
-];
+]
 
 const CONTACTS = [
 	{
@@ -63,7 +63,7 @@ const CONTACTS = [
 		name: 'sunday to thursday: 9AM to 5PM',
 		link: '/not-implemented',
 	},
-];
+]
 
 export default function Footer() {
 	return (
@@ -71,9 +71,12 @@ export default function Footer() {
 			<div className='flex flex-col gap-y-10 p-14'>
 				<div className='flex flex-wrap justify-between gap-10'>
 					<div className='space-y-3'>
-						<h1 className='font-secondary text-4xl'>Get voucher from us</h1>
+						<h1 className='font-secondary text-4xl'>
+							Get voucher from us
+						</h1>
 						<p className='text-gray-400'>
-							Enter you email to the first to know about new collections and launches
+							Enter you email to the first to know about new
+							collections and launches
 						</p>
 						<div className='flex w-fit gap-x-3 rounded border-2 p-4'>
 							<i className='ri-mail-line' />
@@ -87,12 +90,16 @@ export default function Footer() {
 					</div>
 					<div className='flex flex-wrap gap-y-10 text-sm capitalize text-gray-400'>
 						<div>
-							<h4 className='pb-3 font-semibold text-black dark:text-white'>Services</h4>
+							<h4 className='pb-3 font-semibold text-black dark:text-white'>
+								Services
+							</h4>
 							<ul className='w-32 space-y-3'>
 								{SERVICES.map((service, index) => (
 									<li key={index}>
 										{service.link !== '/not-implemented' ? (
-											<Link href={service.link}>{service.name}</Link>
+											<Link href={service.link}>
+												{service.name}
+											</Link>
 										) : (
 											<span>{service.name}</span>
 										)}
@@ -101,12 +108,16 @@ export default function Footer() {
 							</ul>
 						</div>
 						<div>
-							<h4 className='pb-3 font-semibold text-black dark:text-white'>Pages</h4>
+							<h4 className='pb-3 font-semibold text-black dark:text-white'>
+								Pages
+							</h4>
 							<ul className='w-32 space-y-3'>
 								{PAGES.map((page, index) => (
 									<li key={index}>
 										{page.link !== '/not-implemented' ? (
-											<Link href={page.link}>{page.name}</Link>
+											<Link href={page.link}>
+												{page.name}
+											</Link>
 										) : (
 											<span>{page.name}</span>
 										)}
@@ -115,12 +126,16 @@ export default function Footer() {
 							</ul>
 						</div>
 						<div>
-							<h4 className='pb-3 font-semibold text-black dark:text-white'>Contact</h4>
+							<h4 className='pb-3 font-semibold text-black dark:text-white'>
+								Contact
+							</h4>
 							<ul className='w-32 space-y-3'>
 								{CONTACTS.map((contact, index) => (
 									<li key={index}>
 										{contact.link !== '/not-implemented' ? (
-											<Link href={contact.link}>{contact.name}</Link>
+											<Link href={contact.link}>
+												{contact.name}
+											</Link>
 										) : (
 											<span>{contact.name}</span>
 										)}
@@ -153,5 +168,5 @@ export default function Footer() {
 				</div>
 			</div>
 		</footer>
-	);
+	)
 }

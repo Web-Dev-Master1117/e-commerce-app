@@ -1,4 +1,4 @@
-import COUNTRY_LIST from '@/constants/countries';
+import COUNTRY_LIST from '@/constants/countries'
 
 export default function CheckoutForm() {
 	return (
@@ -133,9 +133,11 @@ export default function CheckoutForm() {
 				</div>
 				<span className='flex items-center gap-x-2'>
 					<input type='radio' name='create-account' />
-					<label htmlFor='Create an account?'>Create an account?</label>
+					<label htmlFor='Create an account?'>
+						Create an account?
+					</label>
 				</span>
 			</div>
 		</div>
-	);
+	)
 }

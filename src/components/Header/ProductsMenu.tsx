@@ -1,26 +1,29 @@
-'use client';
+'use client'
 
-import { APPARELS, PERFUMES, SHOES } from '@/constants/brands';
-import PRODUCTS from '@/mocks/products';
-import { Transition } from '@headlessui/react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import ProductCard from '../common/ProductCard';
+import { APPARELS, PERFUMES, SHOES } from '@/constants/brands'
+import PRODUCTS from '@/mocks/products'
+import { Transition } from '@headlessui/react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import ProductCard from '../common/ProductCard'
 
 export default function ProductsMenu() {
-	const products = [PRODUCTS[9], PRODUCTS[11], PRODUCTS[10]];
-	const [showProductMenu, setShowProductMenu] = useState(false);
+	const products = [PRODUCTS[9], PRODUCTS[11], PRODUCTS[10]]
+	const [showProductMenu, setShowProductMenu] = useState(false)
 
-	const pathname = usePathname();
-	useEffect(() => setShowProductMenu(false), [pathname]);
+	const pathname = usePathname()
+	useEffect(() => setShowProductMenu(false), [pathname])
 
 	return (
 		<li
 			onMouseEnter={() => setShowProductMenu(true)}
 			onMouseLeave={() => setShowProductMenu(false)}
 		>
-			<Link href='/products/all' className='flex cursor-pointer gap-1 py-7'>
+			<Link
+				href='/products/all'
+				className='flex cursor-pointer gap-1 py-7'
+			>
 				<span>Products</span>
 				<i className='ri-arrow-down-s-line' />
 			</Link>
@@ -33,6 +36,7 @@ export default function ProductsMenu() {
 				leave='duration-300 ease-in-out'
 				leaveTo='translate-y-2 opacity-0'
 				leaveFrom='translate-y-0 opacity-100'
+				as='div'
 				className='fixed right-0 top-20 z-20 flex w-screen justify-center gap-10 bg-white p-4 text-sm capitalize shadow-lg dark:bg-dark'
 			>
 				<ul className='flex max-h-[calc(100vh-80px-2rem)] flex-wrap justify-center gap-10 overflow-y-auto'>
@@ -85,5 +89,5 @@ export default function ProductsMenu() {
 				</div>
 			</Transition>
 		</li>
-	);
+	)
 }

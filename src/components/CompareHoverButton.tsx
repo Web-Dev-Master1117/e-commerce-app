@@ -1,16 +1,19 @@
-'use client';
+'use client'
 
-import { compareItemsState } from '@/recoil/atoms';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { compareItemsState } from '@/recoil/atoms'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil'
 
 export default function CompareHoverButton() {
-	const [hasCompareItems, setHasCompareItems] = useState(false);
-	const compareItemsNumber = useRecoilValue(compareItemsState).length;
-	useEffect(() => setHasCompareItems(Boolean(compareItemsNumber)), [compareItemsNumber]);
+	const [hasCompareItems, setHasCompareItems] = useState(false)
+	const compareItemsNumber = useRecoilValue(compareItemsState).length
+	useEffect(
+		() => setHasCompareItems(Boolean(compareItemsNumber)),
+		[compareItemsNumber]
+	)
 
-	if (!hasCompareItems) return null;
+	if (!hasCompareItems) return null
 	return (
 		<div className='fixed bottom-2 left-2 hidden sm:max-md:block'>
 			<Link
@@ -23,5 +26,5 @@ export default function CompareHoverButton() {
 				{compareItemsNumber}
 			</span>
 		</div>
-	);
+	)
 }

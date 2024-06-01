@@ -1,11 +1,11 @@
-'use client';
+'use client'
 
-import { ICartItem } from '@/common/interfaces';
-import { cartItemsState } from '@/recoil/atoms';
-import { getDiscountedValue } from '@/utils';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { ICartItem } from '@/common/interfaces'
+import { cartItemsState } from '@/recoil/atoms'
+import { getDiscountedValue } from '@/utils'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil'
 
 function OrderItem({ cartItem }: { cartItem: ICartItem }) {
 	return (
@@ -24,27 +24,39 @@ function OrderItem({ cartItem }: { cartItem: ICartItem }) {
 
 			<ul className='flex flex-col'>
 				<li className='font-semibold'>{cartItem.name}</li>
-				<li className='capitalize text-gray-400'>Color: {cartItem.color}</li>
+				<li className='capitalize text-gray-400'>
+					Color: {cartItem.color}
+				</li>
 				<li className='text-gray-400'>Size: {cartItem.size}</li>
 				<li className='mt-auto space-x-1'>
 					<span>Price:</span>
-					<span className={cartItem.discount ? 'text-gray-400 line-through' : ''}>
+					<span
+						className={
+							cartItem.discount
+								? 'text-gray-400 line-through'
+								: ''
+						}
+					>
 						${cartItem.price.toFixed(2)}
 					</span>
 					<span>
 						{Boolean(cartItem.discount) &&
-							'$' + getDiscountedValue(cartItem.price, cartItem.discount).toFixed(2)}
+							'$' +
+								getDiscountedValue(
+									cartItem.price,
+									cartItem.discount
+								).toFixed(2)}
 					</span>
 				</li>
 			</ul>
 		</li>
-	);
+	)
 }
 
 export default function OrderSummary() {
-	const cartItems = useRecoilValue(cartItemsState);
-	const [showCartItems, setShowCartItems] = useState(false);
-	useEffect(() => setShowCartItems(Boolean(cartItems.size)), [cartItems.size]);
+	const cartItems = useRecoilValue(cartItemsState)
+	const [showCartItems, setShowCartItems] = useState(false)
+	useEffect(() => setShowCartItems(Boolean(cartItems.size)), [cartItems.size])
 
 	return (
 		<section className='border border-gray-50 bg-gray-100 p-5 dark:border-slate-800 dark:bg-slate-900'>
@@ -56,5 +68,5 @@ export default function OrderSummary() {
 				</ul>
 			)}
 		</section>
-	);
+	)
 }

@@ -1,10 +1,12 @@
-import { BLOGS_HEADLINES } from '@/mocks';
-import Image from 'next/image';
+import { BLOGS_HEADLINES } from '@/mocks'
+import Image from 'next/image'
 
 export default function FromBlog() {
 	return (
 		<section className='border border-gray-50 bg-gray-100 dark:border-slate-800 dark:bg-slate-900'>
-			<h1 className='pt-14 text-center font-secondary text-4xl'>From the blog</h1>
+			<h1 className='pt-14 text-center font-secondary text-4xl'>
+				From the blog
+			</h1>
 			<ul className='flex snap-x snap-mandatory gap-10 overflow-x-auto p-14 md:justify-center'>
 				{BLOGS_HEADLINES.map((blogHeadline, index) => (
 					<li
@@ -26,7 +28,9 @@ export default function FromBlog() {
 						>
 							{blogHeadline.tags[0]}
 						</button>
-						<h3 className='text-lg font-semibold capitalize'>{blogHeadline.title}</h3>
+						<h3 className='text-lg font-semibold capitalize'>
+							{blogHeadline.title}
+						</h3>
 					</li>
 				))}
 			</ul>
@@ -35,5 +39,5 @@ export default function FromBlog() {
 				READ MORE
 			</button>
 		</section>
-	);
+	)
 }

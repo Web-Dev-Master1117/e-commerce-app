@@ -1,17 +1,19 @@
-'use client';
+'use client'
 
-import { TCategory } from '@/common/types';
-import { CATEGORIES } from '@/constants';
-import PRODUCTS from '@/mocks/products';
-import { Listbox, Transition } from '@headlessui/react';
-import { Fragment, useState } from 'react';
-import ProductCard from './common/ProductCard';
+import { TCategory } from '@/common/types'
+import { CATEGORIES } from '@/constants'
+import PRODUCTS from '@/mocks/products'
+import { Listbox, Transition } from '@headlessui/react'
+import { Fragment, useState } from 'react'
+import ProductCard from './common/ProductCard'
 
 export default function ProductsCategories() {
-	const [category, setCategory] = useState<TCategory>('all');
+	const [category, setCategory] = useState<TCategory>('all')
 	return (
 		<section className='border border-gray-50 bg-gray-100 dark:border-slate-800 dark:bg-slate-900'>
-			<h1 className='py-14 text-center font-secondary text-4xl'>Products Categories</h1>
+			<h1 className='py-14 text-center font-secondary text-4xl'>
+				Products Categories
+			</h1>
 			<div className='mx-auto font-secondary text-2xl'>
 				<Listbox value={category} onChange={setCategory}>
 					<div className='relative'>
@@ -48,14 +50,17 @@ export default function ProductsCategories() {
 
 			<ul className='mx-auto flex max-w-5xl flex-wrap justify-center gap-10 py-14'>
 				{PRODUCTS.filter((product) => {
-					if (category === 'all') return true;
-					else return product.category === category;
+					if (category === 'all') return true
+					else return product.category === category
 				}).map((product) => (
-					<li key={product.id + category} className='animate-fade-slide'>
+					<li
+						key={product.id + category}
+						className='animate-fade-slide'
+					>
 						<ProductCard product={product} />
 					</li>
 				))}
 			</ul>
 		</section>
-	);
+	)
 }

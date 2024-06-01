@@ -1,32 +1,32 @@
-'use client';
+'use client'
 
-import { cartItemsState } from '@/recoil/atoms';
-import { tw } from '@/utils';
-import { Transition } from '@headlessui/react';
-import { useEffect, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { cartItemsState } from '@/recoil/atoms'
+import { tw } from '@/utils'
+import { Transition } from '@headlessui/react'
+import { useEffect, useState } from 'react'
+import { useSetRecoilState } from 'recoil'
 
 interface IMessage {
-	text: string;
-	colorClass: string;
-	iconClass: string;
+	text: string
+	colorClass: string
+	iconClass: string
 }
 
 export default function Alert() {
-	const [message, setMessage] = useState<IMessage | null>(null);
-	const [showAlert, setShowAlert] = useState(false);
-	const setSetCartItems = useSetRecoilState(cartItemsState);
+	const [message, setMessage] = useState<IMessage | null>(null)
+	const [showAlert, setShowAlert] = useState(false)
+	const setSetCartItems = useSetRecoilState(cartItemsState)
 
 	useEffect(() => {
-		const query = new URLSearchParams(window.location.search);
+		const query = new URLSearchParams(window.location.search)
 		if (query.get('success')) {
 			setMessage({
 				text: 'Order placed',
 				colorClass: tw`bg-blue-500`,
 				iconClass: 'ri-checkbox-circle-line',
-			});
-			setShowAlert(true);
-			setSetCartItems(new Map());
+			})
+			setShowAlert(true)
+			setSetCartItems(new Map())
 		}
 
 		if (query.get('canceled')) {
@@ -34,13 +34,13 @@ export default function Alert() {
 				text: 'Order canceled',
 				colorClass: tw`bg-yellow-500`,
 				iconClass: 'ri-alert-line',
-			});
-			setShowAlert(true);
+			})
+			setShowAlert(true)
 		}
 
-		const hideAlert = setTimeout(() => setShowAlert(false), 3 * 1000);
-		return () => clearTimeout(hideAlert);
-	}, [setSetCartItems]);
+		const hideAlert = setTimeout(() => setShowAlert(false), 3 * 1000)
+		return () => clearTimeout(hideAlert)
+	}, [setSetCartItems])
 
 	return (
 		<Transition
@@ -59,5 +59,5 @@ export default function Alert() {
 				<span>{message?.text}</span>
 			</div>
 		</Transition>
-	);
+	)
 }

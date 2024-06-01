@@ -1,49 +1,55 @@
-'use client';
+'use client'
 
-import PRODUCTS from '@/mocks/products';
-import { tw } from '@/utils';
-import { Transition } from '@headlessui/react';
-import { KeenSliderPlugin, useKeenSlider } from 'keen-slider/react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import PRODUCTS from '@/mocks/products'
+import { tw } from '@/utils'
+import { Transition, TransitionChild } from '@headlessui/react'
+import { KeenSliderPlugin, useKeenSlider } from 'keen-slider/react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
-const PAUSE_DURATION = 2 * 1000;
-const ANIMATION_DURATION = 1 * 1000;
+const PAUSE_DURATION = 2 * 1000
+const ANIMATION_DURATION = 1 * 1000
 
 const autoPlaySliderPlugin: KeenSliderPlugin = (slider) => {
-	let timeout: NodeJS.Timeout | undefined;
-	let mouseOver = false;
+	let timeout: NodeJS.Timeout | undefined
+	let mouseOver = false
 	function clearNextTimeout() {
-		clearTimeout(timeout);
+		clearTimeout(timeout)
 	}
 	function nextTimeout() {
-		clearTimeout(timeout);
-		if (mouseOver) return;
-		timeout = setTimeout(() => slider.next(), PAUSE_DURATION);
+		clearTimeout(timeout)
+		if (mouseOver) return
+		timeout = setTimeout(() => slider.next(), PAUSE_DURATION)
 	}
 	slider.on('created', () => {
 		slider.container.addEventListener('mouseover', () => {
-			mouseOver = true;
-			clearNextTimeout();
-		});
+			mouseOver = true
+			clearNextTimeout()
+		})
 		slider.container.addEventListener('mouseout', () => {
-			mouseOver = false;
-			nextTimeout();
-		});
-		nextTimeout();
-	});
-	slider.on('dragStarted', clearNextTimeout);
-	slider.on('animationEnded', nextTimeout);
-	slider.on('updated', nextTimeout);
-};
+			mouseOver = false
+			nextTimeout()
+		})
+		nextTimeout()
+	})
+	slider.on('dragStarted', clearNextTimeout)
+	slider.on('animationEnded', nextTimeout)
+	slider.on('updated', nextTimeout)
+}
 
 export default function FeaturedProductsCarousel() {
-	const [currentSlide, setCurrentSlide] = useState(0);
-	const [CurrentSlideBounced, setCurrentSlideBounced] = useState(0);
-	const [opacities, setOpacities] = useState<number[]>([]);
+	const [currentSlide, setCurrentSlide] = useState(0)
+	const [CurrentSlideBounced, setCurrentSlideBounced] = useState(0)
+	const [opacities, setOpacities] = useState<number[]>([])
 
-	const featuredProducts = [PRODUCTS[3], PRODUCTS[2], PRODUCTS[0], PRODUCTS[6], PRODUCTS[9]];
+	const featuredProducts = [
+		PRODUCTS[3],
+		PRODUCTS[2],
+		PRODUCTS[0],
+		PRODUCTS[6],
+		PRODUCTS[9],
+	]
 
 	const [sliderRef, instanceRef] = useKeenSlider(
 		{
@@ -54,30 +60,40 @@ export default function FeaturedProductsCarousel() {
 				duration: ANIMATION_DURATION,
 			},
 			detailsChanged(slider) {
-				const new_opacities = slider.track.details.slides.map((slide) => slide.portion);
-				setOpacities(new_opacities);
+				const new_opacities = slider.track.details.slides.map(
+					(slide) => slide.portion
+				)
+				setOpacities(new_opacities)
 			},
 			slideChanged(slider) {
-				setCurrentSlideBounced(slider.track.details.rel);
+				setCurrentSlideBounced(slider.track.details.rel)
 			},
 		},
 
-		[autoPlaySliderPlugin],
-	);
+		[autoPlaySliderPlugin]
+	)
 
 	useEffect(() => {
-		const changeCurrentSlide = setTimeout(() => setCurrentSlide(CurrentSlideBounced), 250);
+		const changeCurrentSlide = setTimeout(
+			() => setCurrentSlide(CurrentSlideBounced),
+			250
+		)
 		return () => {
-			clearTimeout(changeCurrentSlide);
-		};
-	}, [CurrentSlideBounced]);
+			clearTimeout(changeCurrentSlide)
+		}
+	}, [CurrentSlideBounced])
 
 	const slideButtonClasses = (index: number) =>
-		currentSlide === index ? tw`h-2 w-2 bg-black` : tw`h-4 w-4 bg-transparent`;
+		currentSlide === index
+			? tw`h-2 w-2 bg-black`
+			: tw`h-4 w-4 bg-transparent`
 
 	return (
 		<section>
-			<div className='relative flex flex-col md:h-[calc(100vh-80px)]' ref={sliderRef}>
+			<div
+				className='relative flex flex-col md:h-[calc(100vh-80px)]'
+				ref={sliderRef}
+			>
 				<div className='relative h-80 md:h-[calc(100vh-80px)]'>
 					{featuredProducts.map((product, index) => (
 						<Image
@@ -96,11 +112,15 @@ export default function FeaturedProductsCarousel() {
 					{featuredProducts.map((product, index) => (
 						<Transition
 							key={index}
-							show={index === currentSlide && index === CurrentSlideBounced}
+							show={
+								index === currentSlide &&
+								index === CurrentSlideBounced
+							}
 							leave='hidden'
+							as='div'
 							className='mx-auto flex w-screen -translate-y-10 flex-col items-center gap-10 text-center text-white md:max-w-lg md:-translate-y-14'
 						>
-							<Transition.Child
+							<TransitionChild
 								as='span'
 								enter='duration-700'
 								enterFrom='translate-y-12 opacity-0'
@@ -108,8 +128,8 @@ export default function FeaturedProductsCarousel() {
 								className='flex h-20 w-20 items-center justify-center rounded-full bg-teal-400 text-3xl'
 							>
 								${product.price}
-							</Transition.Child>
-							<Transition.Child
+							</TransitionChild>
+							<TransitionChild
 								as='h3'
 								enter='delay-500 duration-700'
 								enterFrom='translate-y-12 opacity-0'
@@ -117,8 +137,8 @@ export default function FeaturedProductsCarousel() {
 								className='font-secondary text-4xl text-black dark:text-white md:text-6xl md:text-white'
 							>
 								{product.name}
-							</Transition.Child>
-							<Transition.Child
+							</TransitionChild>
+							<TransitionChild
 								enter='delay-700 duration-700'
 								enterFrom='translate-y-12 opacity-0'
 								enterTo='translate-y-0 opacity-100'
@@ -129,7 +149,7 @@ export default function FeaturedProductsCarousel() {
 								>
 									SHOP NOW
 								</Link>
-							</Transition.Child>
+							</TransitionChild>
 						</Transition>
 					))}
 				</div>
@@ -139,11 +159,13 @@ export default function FeaturedProductsCarousel() {
 						<li
 							key={index}
 							className='flex h-4 w-4 items-center justify-center'
-							onClick={() => instanceRef.current?.moveToIdx(index)}
+							onClick={() =>
+								instanceRef.current?.moveToIdx(index)
+							}
 						>
 							<span
 								className={`${slideButtonClasses(
-									index,
+									index
 								)} cursor-pointer rounded-full border border-black bg-black duration-300`}
 							/>
 						</li>
@@ -151,5 +173,5 @@ export default function FeaturedProductsCarousel() {
 				</ul>
 			</div>
 		</section>
-	);
+	)
 }

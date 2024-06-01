@@ -1,22 +1,25 @@
-'use client';
+'use client'
 
-import { compareItemsState } from '@/recoil/atoms';
-import { getDiscountedValue } from '@/utils';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { compareItemsState } from '@/recoil/atoms'
+import { getDiscountedValue } from '@/utils'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
 
 export default function CompareTable() {
-	const [hasCompareItems, setHasCompareItems] = useState(false);
-	const [compareItems, setCompareItems] = useRecoilState(compareItemsState);
+	const [hasCompareItems, setHasCompareItems] = useState(false)
+	const [compareItems, setCompareItems] = useRecoilState(compareItemsState)
 
-	useEffect(() => setHasCompareItems(Boolean(compareItems.length)), [compareItems.length]);
+	useEffect(
+		() => setHasCompareItems(Boolean(compareItems.length)),
+		[compareItems.length]
+	)
 
 	const removeItem = (productId: number) => () =>
-		setCompareItems((prev) => prev.filter((item) => item.id !== productId));
+		setCompareItems((prev) => prev.filter((item) => item.id !== productId))
 
-	if (!hasCompareItems) return null;
+	if (!hasCompareItems) return null
 
 	return (
 		<table className='mx-auto block overflow-x-auto rounded border capitalize'>
@@ -25,7 +28,9 @@ export default function CompareTable() {
 					<th></th>
 					{compareItems.map((product, index) => (
 						<th key={index} className='space-y-3 px-4 pb-3 pt-6'>
-							<Link href={`products/${product.category}/${product.id}`}>
+							<Link
+								href={`products/${product.category}/${product.id}`}
+							>
 								<Image
 									alt='product image'
 									src={product.image}
@@ -65,17 +70,27 @@ export default function CompareTable() {
 					<td className='px-4 py-2 font-semibold'>Price</td>
 					{compareItems.map((product, index) => (
 						<td className='space-x-2 px-4 py-2' key={index}>
-							<span className={product.discount ? 'text-gray-400 line-through' : ''}>
+							<span
+								className={
+									product.discount
+										? 'text-gray-400 line-through'
+										: ''
+								}
+							>
 								${product.price.toFixed(2)}
 							</span>
 							<span>
 								{Boolean(product.discount) &&
-									'$' + getDiscountedValue(product.price, product.discount).toFixed(2)}
+									'$' +
+										getDiscountedValue(
+											product.price,
+											product.discount
+										).toFixed(2)}
 							</span>
 						</td>
 					))}
 				</tr>
 			</tbody>
 		</table>
-	);
+	)
 }

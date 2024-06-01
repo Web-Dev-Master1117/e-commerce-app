@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import { Tab } from '@headlessui/react';
+import { Tab } from '@headlessui/react'
 
 export default function TabGroup({ children }: { children: React.ReactNode }) {
 	return (
@@ -32,5 +32,5 @@ export default function TabGroup({ children }: { children: React.ReactNode }) {
 			</Tab.List>
 			<Tab.Panels className='px-5'>{children}</Tab.Panels>
 		</Tab.Group>
-	);
+	)
 }

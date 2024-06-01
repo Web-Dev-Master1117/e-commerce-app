@@ -1,4 +1,4 @@
-import CostDetails from '@/components/common/CostDetails';
+import CostDetails from '@/components/common/CostDetails'
 
 export default function Payment() {
 	return (
@@ -21,7 +21,12 @@ export default function Payment() {
 					</label>
 				</li>
 				<li>
-					<input className='peer hidden' type='radio' name='payment-method' id='pp' />
+					<input
+						className='peer hidden'
+						type='radio'
+						name='payment-method'
+						id='pp'
+					/>
 					<label
 						className='flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-opacity-50 text-gray-400 duration-500 peer-checked:bg-teal-400/20 peer-checked:text-teal-400'
 						htmlFor='pp'
@@ -30,7 +35,12 @@ export default function Payment() {
 					</label>
 				</li>
 				<li>
-					<input className='peer hidden' type='radio' name='payment-method' id='coin' />
+					<input
+						className='peer hidden'
+						type='radio'
+						name='payment-method'
+						id='coin'
+					/>
 					<label
 						className='flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-opacity-50 text-gray-400 duration-500 peer-checked:bg-teal-400/20 peer-checked:text-teal-400'
 						htmlFor='coin'
@@ -40,9 +50,12 @@ export default function Payment() {
 				</li>
 			</ul>
 			<CostDetails />
-			<button type='button' className='w-full rounded bg-teal-400 py-2 font-semibold text-white'>
+			<button
+				type='button'
+				className='w-full rounded bg-teal-400 py-2 font-semibold text-white'
+			>
 				Place Order
 			</button>
 		</section>
-	);
+	)
 }

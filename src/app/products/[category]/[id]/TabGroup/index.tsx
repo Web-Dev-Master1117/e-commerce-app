@@ -1,11 +1,11 @@
-'use client';
+'use client'
 
-import { IProduct } from '@/common/interfaces';
-import CustomTab from './CustomTab';
-import DetailsTab from './DetailsTab';
-import ReviewsTab from './ReviewsTab';
-import ShippingTab from './ShippingTab';
-import TabPanelsContainer from './TabPanelsContainer';
+import { IProduct } from '@/common/interfaces'
+import CustomTab from './CustomTab'
+import DetailsTab from './DetailsTab'
+import ReviewsTab from './ReviewsTab'
+import ShippingTab from './ShippingTab'
+import TabPanelsContainer from './TabPanelsContainer'
 
 export default function TabGroup({ product }: { product: IProduct }) {
 	return (
@@ -17,5 +17,5 @@ export default function TabGroup({ product }: { product: IProduct }) {
 				<ShippingTab />
 			</TabPanelsContainer>
 		</section>
-	);
+	)
 }

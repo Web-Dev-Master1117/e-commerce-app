@@ -1,6 +1,6 @@
-import HeaderCenter from './HeaderCenter';
-import HeaderLeft from './HeaderLeft';
-import HeaderRight from './HeaderRight';
+import HeaderCenter from './HeaderCenter'
+import HeaderLeft from './HeaderLeft'
+import HeaderRight from './HeaderRight'
 
 export default function Header() {
 	return (
@@ -12,5 +12,5 @@ export default function Header() {
 			</header>
 			<div className='h-20' />
 		</>
-	);
+	)
 }

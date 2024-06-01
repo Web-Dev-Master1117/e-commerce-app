@@ -1,25 +1,38 @@
-'use client';
+'use client'
 
-import { compareItemsState, sidebarOpenState, wishlistItemsState } from '@/recoil/atoms';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+	compareItemsState,
+	sidebarOpenState,
+	wishlistItemsState,
+} from '@/recoil/atoms'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function HeaderLeft() {
-	const setSidebarOpen = useSetRecoilState(sidebarOpenState);
-	const openSidebar = () => setSidebarOpen(true);
+	const setSidebarOpen = useSetRecoilState(sidebarOpenState)
+	const openSidebar = () => setSidebarOpen(true)
 
-	const wishlistItemsNumber = useRecoilValue(wishlistItemsState).length;
-	const [hasWishlistItems, setHasWishlistItems] = useState(false);
-	useEffect(() => setHasWishlistItems(Boolean(wishlistItemsNumber)), [wishlistItemsNumber]);
+	const wishlistItemsNumber = useRecoilValue(wishlistItemsState).length
+	const [hasWishlistItems, setHasWishlistItems] = useState(false)
+	useEffect(
+		() => setHasWishlistItems(Boolean(wishlistItemsNumber)),
+		[wishlistItemsNumber]
+	)
 
-	const [hasCompareItems, setHasCompareItems] = useState(false);
-	const compareItemsNumber = useRecoilValue(compareItemsState).length;
-	useEffect(() => setHasCompareItems(Boolean(compareItemsNumber)), [compareItemsNumber]);
+	const [hasCompareItems, setHasCompareItems] = useState(false)
+	const compareItemsNumber = useRecoilValue(compareItemsState).length
+	useEffect(
+		() => setHasCompareItems(Boolean(compareItemsNumber)),
+		[compareItemsNumber]
+	)
 
 	return (
 		<ul className='flex w-16 items-center justify-start gap-4 text-xl'>
-			<li className='cursor-pointer hover:opacity-50 md:hidden' onClick={openSidebar}>
+			<li
+				className='cursor-pointer hover:opacity-50 md:hidden'
+				onClick={openSidebar}
+			>
 				<i className='ri-menu-line' />
 			</li>
 			<li className='relative hidden cursor-pointer hover:opacity-50 md:block'>
@@ -43,5 +56,5 @@ export default function HeaderLeft() {
 				</Link>
 			</li>
 		</ul>
-	);
+	)
 }

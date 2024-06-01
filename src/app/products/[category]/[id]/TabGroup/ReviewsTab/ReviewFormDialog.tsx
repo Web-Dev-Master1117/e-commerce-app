@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import { Dialog } from '@headlessui/react';
-import { useState } from 'react';
+import { Dialog } from '@headlessui/react'
+import { useState } from 'react'
 
 export default function ReviewFormDialog() {
-	let [isOpen, setIsOpen] = useState(false);
+	let [isOpen, setIsOpen] = useState(false)
 
 	return (
 		<>
@@ -15,7 +15,11 @@ export default function ReviewFormDialog() {
 			>
 				WRITE A REVIEW
 			</button>
-			<Dialog open={isOpen} onClose={() => setIsOpen(false)} className='relative z-40'>
+			<Dialog
+				open={isOpen}
+				onClose={() => setIsOpen(false)}
+				className='relative z-40'
+			>
 				<div className='fixed inset-0 bg-black/75' aria-hidden='true' />
 				<div className='fixed inset-0 flex items-center justify-center p-5'>
 					<Dialog.Panel className='relative max-w-xl space-y-5 rounded bg-white px-5 py-10 dark:bg-dark'>
@@ -45,12 +49,15 @@ export default function ReviewFormDialog() {
 							/>
 						</div>
 
-						<button onClick={() => setIsOpen(false)} className='absolute right-3 top-0 text-xl'>
+						<button
+							onClick={() => setIsOpen(false)}
+							className='absolute right-3 top-0 text-xl'
+						>
 							<i className='ri-close-fill'></i>
 						</button>
 					</Dialog.Panel>
 				</div>
 			</Dialog>
 		</>
-	);
+	)
 }

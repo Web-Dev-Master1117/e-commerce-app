@@ -1,65 +1,88 @@
-'use client';
+'use client'
 
-import { IProduct } from '@/common/interfaces';
-import { TSize } from '@/common/types';
-import useCheckout from '@/hooks/checkout';
-import { cartItemsState, compareItemsState, wishlistItemsState } from '@/recoil/atoms';
-import { getDiscountedValue, tw } from '@/utils';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { IProduct } from '@/common/interfaces'
+import { TSize } from '@/common/types'
+import useCheckout from '@/hooks/checkout'
+import {
+	cartItemsState,
+	compareItemsState,
+	wishlistItemsState,
+} from '@/recoil/atoms'
+import { getDiscountedValue, tw } from '@/utils'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
 
 export default function Actions({ product }: { product: IProduct }) {
-	const price = product.price.toFixed(2);
-	const discountedPrice = getDiscountedValue(product.price, product.discount).toFixed(2);
+	const price = product.price.toFixed(2)
+	const discountedPrice = getDiscountedValue(
+		product.price,
+		product.discount
+	).toFixed(2)
 
-	const [cartItems, setCartItems] = useRecoilState(cartItemsState);
-	const [size, setSize] = useState<TSize>('M');
-	const [quantity, setQuantity] = useState(0);
+	const [cartItems, setCartItems] = useRecoilState(cartItemsState)
+	const [size, setSize] = useState<TSize>('M')
+	const [quantity, setQuantity] = useState(0)
 
 	const handleAddToCart = () =>
 		setCartItems((prev) => {
-			const newItems = new Map(prev);
-			newItems.set(`${size}.${product.id}`, { ...product, quantity, size });
-			return newItems;
-		});
+			const newItems = new Map(prev)
+			newItems.set(`${size}.${product.id}`, {
+				...product,
+				quantity,
+				size,
+			})
+			return newItems
+		})
 
 	useEffect(() => {
-		setQuantity(cartItems.get(`${size}.${product.id}`)?.quantity ?? 0);
-	}, [cartItems, product.id, size]);
+		setQuantity(cartItems.get(`${size}.${product.id}`)?.quantity ?? 0)
+	}, [cartItems, product.id, size])
 
-	const [wishlistItems, setWishlistItems] = useRecoilState(wishlistItemsState);
-	const [isItemWished, setIsItemWished] = useState(false);
+	const [wishlistItems, setWishlistItems] = useRecoilState(wishlistItemsState)
+	const [isItemWished, setIsItemWished] = useState(false)
 	useEffect(
-		() => setIsItemWished(!wishlistItems.every(({ id }) => id !== product.id)),
-		[wishlistItems, product],
-	);
+		() =>
+			setIsItemWished(
+				!wishlistItems.every(({ id }) => id !== product.id)
+			),
+		[wishlistItems, product]
+	)
 
 	const handleAddRemoveWishlistItems = () =>
 		isItemWished
-			? setWishlistItems((prev) => prev.filter((item) => item.id !== product.id))
-			: setWishlistItems((prev) => [product, ...prev]);
+			? setWishlistItems((prev) =>
+					prev.filter((item) => item.id !== product.id)
+				)
+			: setWishlistItems((prev) => [product, ...prev])
 
-	const wishlistIconClasses = isItemWished ? tw`text-red-400 ri-heart-fill` : tw`ri-heart-line`;
+	const wishlistIconClasses = isItemWished
+		? tw`ri-heart-fill text-red-400`
+		: tw`ri-heart-line`
 
-	const [compareItems, setCompareItems] = useRecoilState(compareItemsState);
-	const [isCompareItem, setIsCompareItem] = useState(false);
+	const [compareItems, setCompareItems] = useRecoilState(compareItemsState)
+	const [isCompareItem, setIsCompareItem] = useState(false)
 	useEffect(
-		() => setIsCompareItem(!compareItems.every(({ id }) => id !== product.id)),
-		[compareItems, product.id],
-	);
+		() =>
+			setIsCompareItem(
+				!compareItems.every(({ id }) => id !== product.id)
+			),
+		[compareItems, product.id]
+	)
 
 	const handleAddRemoveCompareItems = () =>
 		isCompareItem
-			? setCompareItems((prev) => prev.filter((item) => item.id !== product.id))
-			: setCompareItems((prev) => [product, ...prev]);
+			? setCompareItems((prev) =>
+					prev.filter((item) => item.id !== product.id)
+				)
+			: setCompareItems((prev) => [product, ...prev])
 
-	const compareIconClasses = isCompareItem ? tw`text-teal-400` : tw``;
+	const compareIconClasses = isCompareItem ? tw`text-teal-400` : tw``
 
 	const { checkout, isError, isLoading } = useCheckout([
 		{ quantity: quantity ? quantity : 1, price: product.stripePriceId },
-	]);
-	const handleBuyNow = () => checkout();
+	])
+	const handleBuyNow = () => checkout()
 
 	return (
 		<div className='max-w-xl space-y-3 px-5'>
@@ -76,7 +99,9 @@ export default function Actions({ product }: { product: IProduct }) {
 			</div>
 
 			<div className='flex items-center'>
-				<span className='text-3xl'>${product.discount ? discountedPrice : price}</span>
+				<span className='text-3xl'>
+					${product.discount ? discountedPrice : price}
+				</span>
 				{Boolean(product.discount) && (
 					<div className='before:content-[" "] relative pl-8 before:absolute before:left-3 before:top-0 before:h-full before:w-px before:rotate-[25deg] before:bg-slate-400'>
 						<h3 className='text-gray-400 line-through'>${price}</h3>
@@ -186,7 +211,9 @@ export default function Actions({ product }: { product: IProduct }) {
 					>
 						-
 					</button>
-					<span className='flex h-10 w-10 items-center justify-center bg-gray-200'>{quantity}</span>
+					<span className='flex h-10 w-10 items-center justify-center bg-gray-200'>
+						{quantity}
+					</span>
 					<button
 						onClick={() => setQuantity((prev) => prev + 1)}
 						className='h-10 w-10 rounded-r bg-gray-200'
@@ -207,7 +234,11 @@ export default function Actions({ product }: { product: IProduct }) {
 						isError ? 'bg-red-400' : 'bg-teal-400'
 					} font-semibold text-white duration-300`}
 				>
-					{isLoading ? 'Loading...' : isError ? 'Try Again' : 'BUY NOW'}
+					{isLoading
+						? 'Loading...'
+						: isError
+							? 'Try Again'
+							: 'BUY NOW'}
 				</button>
 			</div>
 
@@ -217,8 +248,14 @@ export default function Actions({ product }: { product: IProduct }) {
 						onClick={handleAddRemoveWishlistItems}
 						className='flex cursor-pointer items-center gap-x-2 hover:opacity-50'
 					>
-						<i className={`${wishlistIconClasses} text-xl duration-300`}></i>
-						<span>{isItemWished ? 'Remove from wishlist' : 'Add to wishlist'}</span>
+						<i
+							className={`${wishlistIconClasses} text-xl duration-300`}
+						></i>
+						<span>
+							{isItemWished
+								? 'Remove from wishlist'
+								: 'Add to wishlist'}
+						</span>
 					</li>
 					<li
 						onClick={handleAddRemoveCompareItems}
@@ -227,7 +264,9 @@ export default function Actions({ product }: { product: IProduct }) {
 						<i
 							className={`${compareIconClasses} ri-arrow-left-right-fill text-xl duration-300`}
 						></i>
-						<span>{isCompareItem ? 'Remove from compare' : 'Compare'}</span>
+						<span>
+							{isCompareItem ? 'Remove from compare' : 'Compare'}
+						</span>
 					</li>
 					<li className='flex items-center gap-x-2 hover:opacity-50'>
 						<i className='ri-share-line text-xl'></i>
@@ -243,7 +282,9 @@ export default function Actions({ product }: { product: IProduct }) {
 					<li className='flex items-center gap-x-2'>
 						<i className='ri-gift-line'></i>
 						<span>Free shipping & return </span>
-						<span className='text-gray-400'>On orders over $60</span>
+						<span className='text-gray-400'>
+							On orders over $60
+						</span>
 					</li>
 					<li className='flex items-center gap-x-2'>
 						<i className='ri-truck-line'></i>
@@ -253,5 +294,5 @@ export default function Actions({ product }: { product: IProduct }) {
 				</ul>
 			</div>
 		</div>
-	);
+	)
 }

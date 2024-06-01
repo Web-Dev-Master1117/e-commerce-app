@@ -14,7 +14,7 @@ export const PRODUCTS_GUIDE = [
 		title: 'Soft Blue Shirt',
 		body: 'Placeholder product guide text, placeholder product guide text. placeholder product guide text.',
 	},
-];
+]
 
 export const BLOGS_HEADLINES = [
 	{
@@ -32,4 +32,4 @@ export const BLOGS_HEADLINES = [
 		title: 'blog post placeholder Title',
 		tags: ['placeholder tag'],
 	},
-];
+]

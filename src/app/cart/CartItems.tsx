@@ -1,37 +1,43 @@
-'use client';
+'use client'
 
-import { ICartItem } from '@/common/interfaces';
-import { cartItemsState } from '@/recoil/atoms';
-import { getDiscountedValue } from '@/utils';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { ICartItem } from '@/common/interfaces'
+import { cartItemsState } from '@/recoil/atoms'
+import { getDiscountedValue } from '@/utils'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 function CartItem({ cartItem }: { cartItem: ICartItem }) {
-	const setCartItems = useSetRecoilState(cartItemsState);
+	const setCartItems = useSetRecoilState(cartItemsState)
 
 	const handleChangeQuantity = (quantity: number) => {
 		setCartItems((prevItems) => {
-			const newItems = new Map(prevItems);
+			const newItems = new Map(prevItems)
 			quantity <= 0
 				? newItems.delete(`${cartItem.size}.${cartItem.id}`)
-				: newItems.set(`${cartItem.size}.${cartItem.id}`, { ...cartItem, quantity });
-			return newItems;
-		});
-	};
+				: newItems.set(`${cartItem.size}.${cartItem.id}`, {
+						...cartItem,
+						quantity,
+					})
+			return newItems
+		})
+	}
 
 	const removeItem = () =>
 		setCartItems((prevItems) => {
-			const newItems = new Map(prevItems);
-			newItems.delete(`${cartItem.size}.${cartItem.id}`);
-			return newItems;
-		});
+			const newItems = new Map(prevItems)
+			newItems.delete(`${cartItem.size}.${cartItem.id}`)
+			return newItems
+		})
 
 	return (
 		<li className='w-[28rem] divide-y rounded border-2 p-5 shadow-lg'>
 			<div className='flex items-center gap-x-10 pb-3'>
-				<Link href={`/products/${cartItem.category}/${cartItem.id}`} className='contents'>
+				<Link
+					href={`/products/${cartItem.category}/${cartItem.id}`}
+					className='contents'
+				>
 					<Image
 						src={cartItem.image}
 						alt='product image'
@@ -42,16 +48,28 @@ function CartItem({ cartItem }: { cartItem: ICartItem }) {
 
 				<ul className='flex flex-col gap-y-1 font-semibold'>
 					<li className='font-secondary text-xl'>{cartItem.name}</li>
-					<li className='capitalize text-gray-400'>Color: {cartItem.color}</li>
+					<li className='capitalize text-gray-400'>
+						Color: {cartItem.color}
+					</li>
 					<li className='text-gray-400'>Size: {cartItem.size}</li>
 					<li className='space-x-2'>
 						<span>Price:</span>
-						<span className={cartItem.discount ? 'text-gray-400 line-through' : ''}>
+						<span
+							className={
+								cartItem.discount
+									? 'text-gray-400 line-through'
+									: ''
+							}
+						>
 							${cartItem.price.toFixed(2)}
 						</span>
 						<span>
 							{Boolean(cartItem.discount) &&
-								'$' + getDiscountedValue(cartItem.price, cartItem.discount).toFixed(2)}
+								'$' +
+									getDiscountedValue(
+										cartItem.price,
+										cartItem.discount
+									).toFixed(2)}
 						</span>
 					</li>
 				</ul>
@@ -61,7 +79,9 @@ function CartItem({ cartItem }: { cartItem: ICartItem }) {
 				<div className='flex items-center rounded bg-gray-200 text-black'>
 					<button
 						disabled={cartItem.quantity <= 0}
-						onClick={() => handleChangeQuantity(cartItem.quantity - 1)}
+						onClick={() =>
+							handleChangeQuantity(cartItem.quantity - 1)
+						}
 						className='h-8 w-8'
 					>
 						-
@@ -69,14 +89,22 @@ function CartItem({ cartItem }: { cartItem: ICartItem }) {
 					<span className='flex h-8 w-8 items-center justify-center bg-gray-200'>
 						{cartItem.quantity}
 					</span>
-					<button onClick={() => handleChangeQuantity(cartItem.quantity + 1)} className='h-8 w-8'>
+					<button
+						onClick={() =>
+							handleChangeQuantity(cartItem.quantity + 1)
+						}
+						className='h-8 w-8'
+					>
 						+
 					</button>
 				</div>
 
 				<span className='font-semibold'>
 					Total: $
-					{(getDiscountedValue(cartItem.price, cartItem.discount) * cartItem.quantity).toFixed(2)}
+					{(
+						getDiscountedValue(cartItem.price, cartItem.discount) *
+						cartItem.quantity
+					).toFixed(2)}
 				</span>
 
 				<button
@@ -87,13 +115,13 @@ function CartItem({ cartItem }: { cartItem: ICartItem }) {
 				</button>
 			</div>
 		</li>
-	);
+	)
 }
 
 export default function CartItems() {
-	const cartItems = useRecoilValue(cartItemsState);
-	const [showCartItems, setShowCartItems] = useState(false);
-	useEffect(() => setShowCartItems(Boolean(cartItems.size)), [cartItems.size]);
+	const cartItems = useRecoilValue(cartItemsState)
+	const [showCartItems, setShowCartItems] = useState(false)
+	useEffect(() => setShowCartItems(Boolean(cartItems.size)), [cartItems.size])
 
 	return (
 		<div>
@@ -106,5 +134,5 @@ export default function CartItems() {
 				</ul>
 			)}
 		</div>
-	);
+	)
 }

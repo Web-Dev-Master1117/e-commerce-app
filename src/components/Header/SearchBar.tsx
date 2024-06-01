@@ -1,42 +1,46 @@
-'use client';
+'use client'
 
-import { IProduct } from '@/common/interfaces';
-import PRODUCTS from '@/mocks/products';
-import { searchBarOpenState } from '@/recoil/atoms';
-import { Transition } from '@headlessui/react';
-import { usePathname } from 'next/navigation';
-import { Fragment, useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import ProductCard from '../common/ProductCard';
+import { IProduct } from '@/common/interfaces'
+import PRODUCTS from '@/mocks/products'
+import { searchBarOpenState } from '@/recoil/atoms'
+import { Transition } from '@headlessui/react'
+import { usePathname } from 'next/navigation'
+import { Fragment, useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
+import ProductCard from '../common/ProductCard'
 
 //TODO use dialog headless comp to get keyboard shortcuts
 export default function SearchBar() {
-	const [searchBarOpen, setSearchBarOpen] = useRecoilState(searchBarOpenState);
-	const closeSearchBar = () => setSearchBarOpen(false);
+	const [searchBarOpen, setSearchBarOpen] = useRecoilState(searchBarOpenState)
+	const closeSearchBar = () => setSearchBarOpen(false)
 
 	useEffect(() => {
-		const style = document.body.style;
-		if (searchBarOpen) style.overflow = 'hidden';
-		else style.overflow = 'auto';
+		const style = document.body.style
+		if (searchBarOpen) style.overflow = 'hidden'
+		else style.overflow = 'auto'
 
 		return () => {
-			style.overflow = 'auto';
-		};
-	}, [searchBarOpen]);
+			style.overflow = 'auto'
+		}
+	}, [searchBarOpen])
 
-	const [searchTerm, setSearchTerm] = useState('');
-	const [products, setProducts] = useState<IProduct[]>([]);
+	const [searchTerm, setSearchTerm] = useState('')
+	const [products, setProducts] = useState<IProduct[]>([])
 	useEffect(() => {
-		if (searchTerm.length === 0) setProducts([]);
-		else if (searchTerm.length < 3) return;
+		if (searchTerm.length === 0) setProducts([])
+		else if (searchTerm.length < 3) return
 		else
 			setProducts(
-				PRODUCTS.filter((product) => product.name.toLowerCase().includes(searchTerm.toLowerCase())),
-			);
-	}, [searchTerm]);
+				PRODUCTS.filter((product) =>
+					product.name
+						.toLowerCase()
+						.includes(searchTerm.toLowerCase())
+				)
+			)
+	}, [searchTerm])
 
-	const pathname = usePathname();
-	useEffect(() => setSearchBarOpen(false), [pathname, setSearchBarOpen]);
+	const pathname = usePathname()
+	useEffect(() => setSearchBarOpen(false), [pathname, setSearchBarOpen])
 
 	return (
 		<Transition
@@ -59,12 +63,18 @@ export default function SearchBar() {
 						value={searchTerm}
 						onChange={(e) => setSearchTerm(e.target.value)}
 					/>
-					<i className='ri-close-line cursor-pointer' onClick={closeSearchBar} />
+					<i
+						className='ri-close-line cursor-pointer'
+						onClick={closeSearchBar}
+					/>
 				</form>
 				<div className='z-20 h-full bg-black/75'>
 					<ul className='flex flex-wrap justify-center gap-5 py-14'>
 						{products.map((product, index) => (
-							<li key={index} className='rounded bg-neutral-100 p-5 dark:bg-slate-900'>
+							<li
+								key={index}
+								className='rounded bg-neutral-100 p-5 dark:bg-slate-900'
+							>
 								<ProductCard product={product} />
 							</li>
 						))}
@@ -72,5 +82,5 @@ export default function SearchBar() {
 				</div>
 			</div>
 		</Transition>
-	);
+	)
 }
