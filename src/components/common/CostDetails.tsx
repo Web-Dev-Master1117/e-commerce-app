@@ -2,14 +2,14 @@
 
 import { ICartStats } from '@/definitions/interfaces'
 import { TShippingPlan } from '@/definitions/types'
-import { shippingPlanState } from '@/recoil/atoms'
-import { cartStatsState } from '@/recoil/selectors'
-import { useEffect, useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { cartInfoAtom } from '@/state/atoms'
+import { cartStatsAtom } from '@/state/selectors'
+import { useAtomValue, useSetAtom } from 'jotai'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 export default function CostDetails() {
-	const cartStats = useRecoilValue(cartStatsState)
-	const setShippingPlan = useSetRecoilState(shippingPlanState)
+	const cartStats = useAtomValue(cartStatsAtom)
+	const setCartInfo = useSetAtom(cartInfoAtom)
 	const [{ subTotal, totalDiscount, totalPrice }, setCartStats] =
 		useState<ICartStats>({
 			itemsNumber: 0,
@@ -19,6 +19,14 @@ export default function CostDetails() {
 		})
 
 	useEffect(() => setCartStats(cartStats), [cartStats])
+
+	const shippingPlan = useAtomValue(cartInfoAtom).shippingPlan
+	const handleShippingPlan = (e: ChangeEvent<HTMLInputElement>) => {
+		setCartInfo((prev) => ({
+			...prev,
+			shippingPlan: e.target.value as TShippingPlan,
+		}))
+	}
 
 	return (
 		<>
@@ -48,12 +56,8 @@ export default function CostDetails() {
 										name='shipping-plan'
 										value='free'
 										id='free'
-										defaultChecked
-										onChange={(e) =>
-											setShippingPlan(
-												e.target.value as TShippingPlan
-											)
-										}
+										checked={shippingPlan === 'free'}
+										onChange={handleShippingPlan}
 									/>
 									<label htmlFor='free'>Free</label>
 								</span>
@@ -66,11 +70,8 @@ export default function CostDetails() {
 										name='shipping-plan'
 										value='express'
 										id='express'
-										onChange={(e) =>
-											setShippingPlan(
-												e.target.value as TShippingPlan
-											)
-										}
+										checked={shippingPlan === 'express'}
+										onChange={handleShippingPlan}
 									/>
 									<label htmlFor='express'>Express</label>
 								</span>

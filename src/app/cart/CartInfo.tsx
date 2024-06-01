@@ -2,12 +2,12 @@
 
 import CostDetails from '@/components/common/CostDetails'
 import useCheckout from '@/hooks/checkout'
-import { cartItemsState } from '@/recoil/atoms'
-import { useRecoilValue } from 'recoil'
+import { cartInfoAtom } from '@/state/atoms'
+import { useAtomValue } from 'jotai'
 import Stripe from 'stripe'
 
 export default function CartInfo() {
-	const cartItems = useRecoilValue(cartItemsState)
+	const cartItems = useAtomValue(cartInfoAtom).cartItems
 	const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] =
 		Array.from(cartItems.values()).map(({ quantity, stripePriceId }) => ({
 			quantity,

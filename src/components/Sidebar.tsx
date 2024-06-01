@@ -1,13 +1,13 @@
 'use client'
 
 import { APPARELS, PERFUMES, SHOES, SPECIALS } from '@/constants/brands'
-import { sidebarOpenState } from '@/recoil/atoms'
+import { sidebarOpenAtom } from '@/state/atoms'
 import { tw } from '@/utils'
 import { Transition } from '@headlessui/react'
+import { useAtom } from 'jotai'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Fragment, useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
 
 //TODO use dialog headless comp to get keyboard shortcuts
 export default function Sidebar() {
@@ -22,7 +22,7 @@ export default function Sidebar() {
 		setProductsMenuOpen(false)
 	}
 
-	const [sidebarOpen, setSidebarOpen] = useRecoilState(sidebarOpenState)
+	const [sidebarOpen, setSidebarOpen] = useAtom(sidebarOpenAtom)
 	const pathname = usePathname()
 	useEffect(() => setSidebarOpen(false), [pathname, setSidebarOpen])
 	const closeSidebar = () => setSidebarOpen(false)

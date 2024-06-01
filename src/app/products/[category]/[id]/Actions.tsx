@@ -4,14 +4,14 @@ import { IProduct } from '@/definitions/interfaces'
 import { TSize } from '@/definitions/types'
 import useCheckout from '@/hooks/checkout'
 import {
-	cartItemsState,
-	compareItemsState,
-	wishlistItemsState,
-} from '@/recoil/atoms'
+	cartInfoAtom,
+	compareItemsAtom,
+	wishlistItemsAtom,
+} from '@/state/atoms'
 import { getDiscountedValue, tw } from '@/utils'
+import { useAtom } from 'jotai'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
 
 export default function Actions({ product }: { product: IProduct }) {
 	const price = product.price.toFixed(2)
@@ -20,26 +20,31 @@ export default function Actions({ product }: { product: IProduct }) {
 		product.discount
 	).toFixed(2)
 
-	const [cartItems, setCartItems] = useRecoilState(cartItemsState)
+	const [cartInfo, setCartInfo] = useAtom(cartInfoAtom)
 	const [size, setSize] = useState<TSize>('M')
 	const [quantity, setQuantity] = useState(0)
 
 	const handleAddToCart = () =>
-		setCartItems((prev) => {
-			const newItems = new Map(prev)
+		setCartInfo((prev) => {
+			const newItems = new Map(prev.cartItems)
 			newItems.set(`${size}.${product.id}`, {
 				...product,
 				quantity,
 				size,
 			})
-			return newItems
+			return {
+				...prev,
+				cartItems: newItems,
+			}
 		})
 
 	useEffect(() => {
-		setQuantity(cartItems.get(`${size}.${product.id}`)?.quantity ?? 0)
-	}, [cartItems, product.id, size])
+		setQuantity(
+			cartInfo.cartItems.get(`${size}.${product.id}`)?.quantity ?? 0
+		)
+	}, [cartInfo, product.id, size])
 
-	const [wishlistItems, setWishlistItems] = useRecoilState(wishlistItemsState)
+	const [wishlistItems, setWishlistItems] = useAtom(wishlistItemsAtom)
 	const [isItemWished, setIsItemWished] = useState(false)
 	useEffect(
 		() =>
@@ -60,7 +65,7 @@ export default function Actions({ product }: { product: IProduct }) {
 		? tw`ri-heart-fill text-red-400`
 		: tw`ri-heart-line`
 
-	const [compareItems, setCompareItems] = useRecoilState(compareItemsState)
+	const [compareItems, setCompareItems] = useAtom(compareItemsAtom)
 	const [isCompareItem, setIsCompareItem] = useState(false)
 	useEffect(
 		() =>

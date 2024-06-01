@@ -1,19 +1,19 @@
 'use client'
 
 import {
-	compareItemsState,
-	sidebarOpenState,
-	wishlistItemsState,
-} from '@/recoil/atoms'
+	compareItemsAtom,
+	sidebarOpenAtom,
+	wishlistItemsAtom,
+} from '@/state/atoms'
+import { useAtomValue, useSetAtom } from 'jotai'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function HeaderLeft() {
-	const setSidebarOpen = useSetRecoilState(sidebarOpenState)
+	const setSidebarOpen = useSetAtom(sidebarOpenAtom)
 	const openSidebar = () => setSidebarOpen(true)
 
-	const wishlistItemsNumber = useRecoilValue(wishlistItemsState).length
+	const wishlistItemsNumber = useAtomValue(wishlistItemsAtom).length
 	const [hasWishlistItems, setHasWishlistItems] = useState(false)
 	useEffect(
 		() => setHasWishlistItems(Boolean(wishlistItemsNumber)),
@@ -21,7 +21,7 @@ export default function HeaderLeft() {
 	)
 
 	const [hasCompareItems, setHasCompareItems] = useState(false)
-	const compareItemsNumber = useRecoilValue(compareItemsState).length
+	const compareItemsNumber = useAtomValue(compareItemsAtom).length
 	useEffect(
 		() => setHasCompareItems(Boolean(compareItemsNumber)),
 		[compareItemsNumber]

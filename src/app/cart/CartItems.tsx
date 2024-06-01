@@ -1,34 +1,40 @@
 'use client'
 
 import { ICartItem } from '@/definitions/interfaces'
-import { cartItemsState } from '@/recoil/atoms'
+import { cartInfoAtom } from '@/state/atoms'
 import { getDiscountedValue } from '@/utils'
+import { useAtomValue, useSetAtom } from 'jotai'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 function CartItem({ cartItem }: { cartItem: ICartItem }) {
-	const setCartItems = useSetRecoilState(cartItemsState)
+	const setCartInfo = useSetAtom(cartInfoAtom)
 
 	const handleChangeQuantity = (quantity: number) => {
-		setCartItems((prevItems) => {
-			const newItems = new Map(prevItems)
+		setCartInfo((prev) => {
+			const newItems = new Map(prev.cartItems)
 			quantity <= 0
 				? newItems.delete(`${cartItem.size}.${cartItem.id}`)
 				: newItems.set(`${cartItem.size}.${cartItem.id}`, {
 						...cartItem,
 						quantity,
 					})
-			return newItems
+			return {
+				...prev,
+				cartItems: newItems,
+			}
 		})
 	}
 
 	const removeItem = () =>
-		setCartItems((prevItems) => {
-			const newItems = new Map(prevItems)
+		setCartInfo((prev) => {
+			const newItems = new Map(prev.cartItems)
 			newItems.delete(`${cartItem.size}.${cartItem.id}`)
-			return newItems
+			return {
+				...prev,
+				cartItems: newItems,
+			}
 		})
 
 	return (
@@ -119,7 +125,7 @@ function CartItem({ cartItem }: { cartItem: ICartItem }) {
 }
 
 export default function CartItems() {
-	const cartItems = useRecoilValue(cartItemsState)
+	const cartItems = useAtomValue(cartInfoAtom).cartItems
 	const [showCartItems, setShowCartItems] = useState(false)
 	useEffect(() => setShowCartItems(Boolean(cartItems.size)), [cartItems.size])
 

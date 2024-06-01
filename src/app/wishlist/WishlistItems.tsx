@@ -1,15 +1,15 @@
 'use client'
 
 import { IProduct } from '@/definitions/interfaces'
-import { wishlistItemsState } from '@/recoil/atoms'
+import { wishlistItemsAtom } from '@/state/atoms'
 import { getDiscountedValue } from '@/utils'
+import { useAtomValue, useSetAtom } from 'jotai'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 function WishlistItem({ wishlistItem }: { wishlistItem: IProduct }) {
-	const setWishlistItems = useSetRecoilState(wishlistItemsState)
+	const setWishlistItems = useSetAtom(wishlistItemsAtom)
 	const removeItem = () =>
 		setWishlistItems((prevItems) =>
 			prevItems.filter((item) => item.id !== wishlistItem.id)
@@ -70,7 +70,7 @@ function WishlistItem({ wishlistItem }: { wishlistItem: IProduct }) {
 }
 
 export default function WishlistItems() {
-	const wishlistItems = useRecoilValue(wishlistItemsState)
+	const wishlistItems = useAtomValue(wishlistItemsAtom)
 	const [showCartItems, setShowCartItems] = useState(false)
 	useEffect(
 		() => setShowCartItems(Boolean(wishlistItems.length)),

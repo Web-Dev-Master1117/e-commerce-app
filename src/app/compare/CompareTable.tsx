@@ -1,15 +1,15 @@
 'use client'
 
-import { compareItemsState } from '@/recoil/atoms'
+import { compareItemsAtom } from '@/state/atoms'
 import { getDiscountedValue } from '@/utils'
+import { useAtom } from 'jotai'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
 
 export default function CompareTable() {
 	const [hasCompareItems, setHasCompareItems] = useState(false)
-	const [compareItems, setCompareItems] = useRecoilState(compareItemsState)
+	const [compareItems, setCompareItems] = useAtom(compareItemsAtom)
 
 	useEffect(
 		() => setHasCompareItems(Boolean(compareItems.length)),

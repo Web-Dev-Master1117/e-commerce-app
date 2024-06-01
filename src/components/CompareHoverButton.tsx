@@ -1,13 +1,13 @@
 'use client'
 
-import { compareItemsState } from '@/recoil/atoms'
+import { compareItemsAtom } from '@/state/atoms'
+import { useAtomValue } from 'jotai'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 
 export default function CompareHoverButton() {
 	const [hasCompareItems, setHasCompareItems] = useState(false)
-	const compareItemsNumber = useRecoilValue(compareItemsState).length
+	const compareItemsNumber = useAtomValue(compareItemsAtom).length
 	useEffect(
 		() => setHasCompareItems(Boolean(compareItemsNumber)),
 		[compareItemsNumber]

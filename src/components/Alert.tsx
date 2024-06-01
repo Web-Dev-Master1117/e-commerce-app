@@ -1,10 +1,10 @@
 'use client'
 
-import { cartItemsState } from '@/recoil/atoms'
+import { cartInfoAtom } from '@/state/atoms'
 import { tw } from '@/utils'
 import { Transition } from '@headlessui/react'
+import { useSetAtom } from 'jotai'
 import { useEffect, useState } from 'react'
-import { useSetRecoilState } from 'recoil'
 
 interface IMessage {
 	text: string
@@ -15,7 +15,7 @@ interface IMessage {
 export default function Alert() {
 	const [message, setMessage] = useState<IMessage | null>(null)
 	const [showAlert, setShowAlert] = useState(false)
-	const setSetCartItems = useSetRecoilState(cartItemsState)
+	const setCartInfo = useSetAtom(cartInfoAtom)
 
 	useEffect(() => {
 		const query = new URLSearchParams(window.location.search)
@@ -26,7 +26,7 @@ export default function Alert() {
 				iconClass: 'ri-checkbox-circle-line',
 			})
 			setShowAlert(true)
-			setSetCartItems(new Map())
+			setCartInfo((prev) => ({ ...prev, cartItems: new Map() }))
 		}
 
 		if (query.get('canceled')) {
@@ -40,7 +40,7 @@ export default function Alert() {
 
 		const hideAlert = setTimeout(() => setShowAlert(false), 3 * 1000)
 		return () => clearTimeout(hideAlert)
-	}, [setSetCartItems])
+	}, [setCartInfo])
 
 	return (
 		<Transition

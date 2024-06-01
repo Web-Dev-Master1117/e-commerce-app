@@ -1,11 +1,11 @@
 'use client'
 
 import { ICartItem } from '@/definitions/interfaces'
-import { cartItemsState } from '@/recoil/atoms'
+import { cartInfoAtom } from '@/state/atoms'
 import { getDiscountedValue } from '@/utils'
+import { useAtomValue } from 'jotai'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 
 function OrderItem({ cartItem }: { cartItem: ICartItem }) {
 	return (
@@ -54,7 +54,7 @@ function OrderItem({ cartItem }: { cartItem: ICartItem }) {
 }
 
 export default function OrderSummary() {
-	const cartItems = useRecoilValue(cartItemsState)
+	const cartItems = useAtomValue(cartInfoAtom).cartItems
 	const [showCartItems, setShowCartItems] = useState(false)
 	useEffect(() => setShowCartItems(Boolean(cartItems.size)), [cartItems.size])
 

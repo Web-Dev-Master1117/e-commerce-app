@@ -2,43 +2,51 @@
 
 import { ICartItem } from '@/definitions/interfaces'
 import useCheckout from '@/hooks/checkout'
-import { cartItemsState, shoppingCartOpenState } from '@/recoil/atoms'
+import { cartInfoAtom, shoppingCartOpenAtom } from '@/state/atoms'
 import { getDiscountedValue } from '@/utils'
 import { Transition } from '@headlessui/react'
+import { useAtom } from 'jotai'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fragment, useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
 import Stripe from 'stripe'
 import CostDetails from './common/CostDetails'
 
 //TODO use dialog headless comp to get keyboard shortcuts
 export default function ShoppingCart() {
-	const [sidebarOpen, setSidebarOpen] = useRecoilState(shoppingCartOpenState)
-	const [cartItems, setCartItems] = useRecoilState(cartItemsState)
+	const [sidebarOpen, setSidebarOpen] = useAtom(shoppingCartOpenAtom)
+	const [cartInfo, setCartInfo] = useAtom(cartInfoAtom)
 	const [showCartItems, setShowCartItems] = useState(false)
-	useEffect(() => setShowCartItems(Boolean(cartItems.size)), [cartItems.size])
+	useEffect(
+		() => setShowCartItems(Boolean(cartInfo.cartItems.size)),
+		[cartInfo.cartItems.size]
+	)
 
 	const closeSidebar = () => setSidebarOpen(false)
 
 	const handleChangeQuantity = (cartItem: ICartItem, quantity: number) => {
-		setCartItems((prevItems) => {
-			const newItems = new Map(prevItems)
+		setCartInfo((prev) => {
+			const newItems = new Map(prev.cartItems)
 			quantity <= 0
 				? newItems.delete(`${cartItem.size}.${cartItem.id}`)
 				: newItems.set(`${cartItem.size}.${cartItem.id}`, {
 						...cartItem,
 						quantity,
 					})
-			return newItems
+			return {
+				...prev,
+				cartItems: newItems,
+			}
 		})
 	}
 
 	const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] =
-		Array.from(cartItems.values()).map(({ quantity, stripePriceId }) => ({
-			quantity,
-			price: stripePriceId,
-		}))
+		Array.from(cartInfo.cartItems.values()).map(
+			({ quantity, stripePriceId }) => ({
+				quantity,
+				price: stripePriceId,
+			})
+		)
 
 	const { checkout, isLoading, isError } = useCheckout(lineItems)
 
@@ -89,7 +97,7 @@ export default function ShoppingCart() {
 					</h3>
 					{showCartItems && (
 						<ul className='space-y-3 overflow-auto pl-5'>
-							{Array.from(cartItems.values()).map(
+							{Array.from(cartInfo.cartItems.values()).map(
 								(cartItem, index) => (
 									<li
 										key={index}

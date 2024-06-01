@@ -1,16 +1,16 @@
 'use client'
 
-import { searchBarOpenState, shoppingCartOpenState } from '@/recoil/atoms'
-import { cartStatsState } from '@/recoil/selectors'
+import { searchBarOpenAtom, shoppingCartOpenAtom } from '@/state/atoms'
+import { cartStatsAtom } from '@/state/selectors'
+import { useAtomValue, useSetAtom } from 'jotai'
 import { useEffect, useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function HeaderRight() {
-	const SearchBarOpen = useSetRecoilState(searchBarOpenState)
-	const setShoppingCartOpen = useSetRecoilState(shoppingCartOpenState)
+	const SearchBarOpen = useSetAtom(searchBarOpenAtom)
+	const setShoppingCartOpen = useSetAtom(shoppingCartOpenAtom)
 	const openShoppingCart = () => setShoppingCartOpen(true)
 
-	const { itemsNumber } = useRecoilValue(cartStatsState)
+	const { itemsNumber } = useAtomValue(cartStatsAtom)
 	const [showItemsNumber, setShowItemsNumber] = useState(false)
 	useEffect(() => setShowItemsNumber(Boolean(itemsNumber)), [itemsNumber])
 

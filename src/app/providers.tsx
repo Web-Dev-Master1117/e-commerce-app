@@ -1,8 +1,8 @@
 'use client'
 
+import { ThemeProvider } from 'next-themes'
 import { ReactNode } from 'react'
-import { RecoilRoot } from 'recoil'
 
 export function Providers({ children }: { children: ReactNode }) {
-	return <RecoilRoot>{children}</RecoilRoot>
+	return <ThemeProvider attribute='class'>{children}</ThemeProvider>
 }

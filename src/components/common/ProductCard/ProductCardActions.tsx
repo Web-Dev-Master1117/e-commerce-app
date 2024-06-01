@@ -1,14 +1,15 @@
 'use client'
+
 import { IProduct } from '@/definitions/interfaces'
-import { compareItemsState, wishlistItemsState } from '@/recoil/atoms'
+import { compareItemsAtom, wishlistItemsAtom } from '@/state/atoms'
 import { tw } from '@/utils'
+import { useAtom } from 'jotai'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
 import Tooltip from '../Tooltip'
 
 export default function ProductCardActions({ product }: { product: IProduct }) {
-	const [wishlistItems, setWishlistItems] = useRecoilState(wishlistItemsState)
+	const [wishlistItems, setWishlistItems] = useAtom(wishlistItemsAtom)
 	const [isItemWished, setIsItemWished] = useState(false)
 	useEffect(
 		() =>
@@ -29,7 +30,7 @@ export default function ProductCardActions({ product }: { product: IProduct }) {
 		? tw`bg-yellow-400 text-white`
 		: tw`bg-white text-black hover:bg-black hover:text-white`
 
-	const [compareItems, setCompareItems] = useRecoilState(compareItemsState)
+	const [compareItems, setCompareItems] = useAtom(compareItemsAtom)
 	const [isCompareItem, setIsCompareItem] = useState(false)
 	useEffect(
 		() =>

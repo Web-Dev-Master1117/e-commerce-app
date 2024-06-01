@@ -1,24 +1,24 @@
 'use client'
 
 import {
-	compareItemsState,
-	shoppingCartOpenState,
-	wishlistItemsState,
-} from '@/recoil/atoms'
-import { cartStatsState } from '@/recoil/selectors'
+	compareItemsAtom,
+	shoppingCartOpenAtom,
+	wishlistItemsAtom,
+} from '@/state/atoms'
+import { cartStatsAtom } from '@/state/selectors'
+import { useAtomValue, useSetAtom } from 'jotai'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function MobileNavbar() {
-	const setShoppingCartOpen = useSetRecoilState(shoppingCartOpenState)
+	const setShoppingCartOpen = useSetAtom(shoppingCartOpenAtom)
 
-	const { itemsNumber } = useRecoilValue(cartStatsState)
+	const { itemsNumber } = useAtomValue(cartStatsAtom)
 	const [showItemsNumber, setShowItemsNumber] = useState(false)
 	useEffect(() => setShowItemsNumber(Boolean(itemsNumber)), [itemsNumber])
 
-	const wishlistItemsNumber = useRecoilValue(wishlistItemsState).length
+	const wishlistItemsNumber = useAtomValue(wishlistItemsAtom).length
 	const [hasWishlistItems, setHasWishlistItems] = useState(false)
 	useEffect(
 		() => setHasWishlistItems(Boolean(wishlistItemsNumber)),
@@ -26,7 +26,7 @@ export default function MobileNavbar() {
 	)
 
 	const [hasCompareItems, setHasCompareItems] = useState(false)
-	const compareItemsNumber = useRecoilValue(compareItemsState).length
+	const compareItemsNumber = useAtomValue(compareItemsAtom).length
 	useEffect(
 		() => setHasCompareItems(Boolean(compareItemsNumber)),
 		[compareItemsNumber]

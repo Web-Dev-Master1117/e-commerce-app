@@ -2,16 +2,16 @@
 
 import { IProduct } from '@/definitions/interfaces'
 import PRODUCTS from '@/mocks/products'
-import { searchBarOpenState } from '@/recoil/atoms'
+import { searchBarOpenAtom } from '@/state/atoms'
 import { Transition } from '@headlessui/react'
+import { useAtom } from 'jotai'
 import { usePathname } from 'next/navigation'
 import { Fragment, useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
 import ProductCard from '../common/ProductCard'
 
 //TODO use dialog headless comp to get keyboard shortcuts
 export default function SearchBar() {
-	const [searchBarOpen, setSearchBarOpen] = useRecoilState(searchBarOpenState)
+	const [searchBarOpen, setSearchBarOpen] = useAtom(searchBarOpenAtom)
 	const closeSearchBar = () => setSearchBarOpen(false)
 
 	useEffect(() => {

@@ -8,15 +8,20 @@
 		"Ganni",
 		"headlessui",
 		"heroicons",
+		"knip",
 		"msedge",
 		"Parens",
 		"pnpm",
 		"Prata",
+		"prettiercache",
 		"stripejs",
 		"tailwindcss",
+		"todos",
 		"tsbuildinfo",
 		"Versace",
-		"todos"
+		"vercel",
+		"eslintcache",
+		"jotai"
 	],
 	"ignorePaths": ["pnpm-lock.yaml", "*.tsbuildinfo"]
 }

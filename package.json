@@ -5,13 +5,13 @@
 	"type": "module",
 	"scripts": {
 		"dev": "next dev",
-		"dev:turbo": "pnpm -s dev --turbo",
 		"build": "next build",
 		"build:analyze": "set ANALYZE=true&& pnpm build",
 		"start": "next start",
 		"lint": "next lint",
-		"type-check": "tsc --noEmit",
-		"format": "prettier --write --ignore-unknown --cache --cache-location=.prettier-cache ."
+		"type-check": "tsc --noEmit --incremental",
+		"format": "prettier --write --ignore-unknown --cache --cache-location=.prettiercache .",
+		"dead-code": "knip"
 	},
 	"dependencies": {
 		"@headlessui/react": "^2.0.4",
@@ -22,12 +22,12 @@
 		"@types/react-dom": "18.3.0",
 		"eslint": "8.57.0",
 		"eslint-config-next": "^14.2.3",
+		"jotai": "^2.8.2",
 		"keen-slider": "^6.8.6",
 		"next": "^14.2.3",
 		"next-themes": "^0.3.0",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
-		"recoil": "^0.7.7",
 		"sharp": "^0.33.4",
 		"stripe": "^15.8.0",
 		"typescript": "^5.4.5"
@@ -36,15 +36,11 @@
 		"autoprefixer": "^10.4.19",
 		"cspell": "^8.8.3",
 		"husky": "^9.0.11",
+		"knip": "^5.17.3",
 		"lint-staged": "^15.2.5",
 		"postcss": "^8.4.38",
 		"prettier": "^3.2.5",
 		"prettier-plugin-tailwindcss": "0.6.1",
 		"tailwindcss": "^3.4.3"
-	},
-	"lint-staged": {
-		"*": [
-			"prettier --write --ignore-unknown --cache --cache-location=.prettier-cache"
-		]
 	}
 }
